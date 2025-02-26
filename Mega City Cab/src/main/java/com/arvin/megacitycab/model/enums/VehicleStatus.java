@@ -1,6 +1,7 @@
 package com.arvin.megacitycab.model.enums;
 
 public enum VehicleStatus {
+    DEFAULT(0, "Default"),
     AVAILABLE(1, "Available"),
     NOT_AVAILABLE(2, "Not Available"),
     MAINTENANCE(3, "Maintenance");
@@ -20,6 +21,15 @@ public enum VehicleStatus {
     @Override
     public String toString() {
         return name;
+    }
+
+    public static boolean isValid(int value){
+        for (VehicleStatus type : VehicleStatus.values()) {
+            if (type.value == value) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static VehicleStatus fromInt(int value) {
