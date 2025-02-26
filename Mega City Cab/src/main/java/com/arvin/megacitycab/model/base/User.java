@@ -7,11 +7,11 @@ public class User {
     protected String address;
     protected String email;
     protected String mobile;
-
     protected int type;
     protected String password;
     protected String verification_code;
     protected Boolean isVerified = false;
+    protected String access_token;
     protected String created_at;
     protected String updated_at;
 
@@ -99,6 +99,14 @@ public class User {
         this.type = type;
     }
 
+    public String getAccess_token() {
+        return access_token;
+    }
+
+    public void setAccess_token(String access_token) {
+        this.access_token = access_token;
+    }
+
     public String getCreated_at() {
         return created_at;
     }
@@ -114,4 +122,5 @@ public class User {
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
     }
+
 }

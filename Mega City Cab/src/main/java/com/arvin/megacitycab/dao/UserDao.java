@@ -13,6 +13,32 @@ import java.util.List;
 
 public class UserDao {
 
+    public User login(User user) throws SQLException {
+        String sql = "SELECT * FROM user WHERE email = ? AND password = ? AND is_verified = 1";
+        Connection conn = null;
+
+        try {
+            conn = DatabaseConnectionPool.getInstance().getConnection();
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setString(1, user.getEmail());
+                stmt.setString(2, user.getPassword());
+
+                try (ResultSet rs = stmt.executeQuery()) {
+                    if (rs.next()) {
+                        return resultSetToUser(rs);
+                    } else {
+                        return null;
+                    }
+                }
+            }
+        } finally {
+            if (conn != null) {
+                DatabaseConnectionPool.getInstance().releaseConnection(conn);
+            }
+        }
+    }
+
+
     public User addUser(User user) throws SQLException {
         String sql = "INSERT INTO user (name, nic, address, email, mobile, type, password, verification_code, is_verified) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         Connection conn = null;
@@ -176,6 +202,11 @@ public class UserDao {
         if (user.isVerified() != null) {
             sql.append("is_verified = ?, ");
             params.add(user.isVerified());
+        }
+
+        if (user.getAccess_token() != null) {
+            sql.append("access_token = ?, ");
+            params.add(user.getAccess_token());
         }
 
         sql.setLength(sql.length() - 2);

@@ -3,112 +3,113 @@ package com.arvin.megacitycab.model;
 import com.arvin.megacitycab.model.enums.BookingStatus;
 
 public class Booking {
-    private String bookingId;
-    private Customer customer;
-    private Driver driver;
-    private Vehicle vehicle;
-    private long pickupLatitude;
-    private long pickupLongitude;
-    private String pickupAddress;
-    private long dropOffLatitude;
-    private long dropOffLongitude;
-    private String dropOffAddress;
-    private BookingStatus bookingStatus;
-    private double amount;
 
-    public String getBookingId() {
-        return bookingId;
+    private int id;
+    private int customerId;
+    private int vehicleId;
+    private int driverId;
+    private String pickupLocation;
+    private String pickupDatetime;
+    private String dropOffLocation;
+    private Double totalDistance;
+    private Double totalPrice;
+    private int status;
+    private String createdAt;
+    private String updatedAt;
+
+    public int getId() {
+        return id;
     }
 
-    public void setBookingId(String bookingId) {
-        this.bookingId = bookingId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
-    public Driver getDriver() {
-        return driver;
+    public int getVehicleId() {
+        return vehicleId;
     }
 
-    public void setDriver(Driver driver) {
-        this.driver = driver;
+    public void setVehicleId(int vehicleId) {
+        this.vehicleId = vehicleId;
     }
 
-    public Vehicle getVehicle() {
-        return vehicle;
+    public int getDriverId() {
+        return driverId;
     }
 
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
+    public void setDriverId(int driverId) {
+        this.driverId = driverId;
     }
 
-    public long getPickupLatitude() {
-        return pickupLatitude;
+    public String getPickupLocation() {
+        return pickupLocation;
     }
 
-    public void setPickupLatitude(long pickupLatitude) {
-        this.pickupLatitude = pickupLatitude;
+    public void setPickupLocation(String pickupLocation) {
+        this.pickupLocation = pickupLocation;
     }
 
-    public long getPickupLongitude() {
-        return pickupLongitude;
+    public String getPickupDatetime() {
+        return pickupDatetime;
     }
 
-    public void setPickupLongitude(long pickupLongitude) {
-        this.pickupLongitude = pickupLongitude;
+    public void setPickupDatetime(String pickupDatetime) {
+        this.pickupDatetime = pickupDatetime;
     }
 
-    public String getPickupAddress() {
-        return pickupAddress;
+    public String getDropOffLocation() {
+        return dropOffLocation;
     }
 
-    public void setPickupAddress(String pickupAddress) {
-        this.pickupAddress = pickupAddress;
+    public void setDropOffLocation(String dropOffLocation) {
+        this.dropOffLocation = dropOffLocation;
     }
 
-    public long getDropOffLatitude() {
-        return dropOffLatitude;
+    public Double getTotalDistance() {
+        return totalDistance;
     }
 
-    public void setDropOffLatitude(long dropOffLatitude) {
-        this.dropOffLatitude = dropOffLatitude;
+    public void setTotalDistance(Double totalDistance) {
+        this.totalDistance = totalDistance;
     }
 
-    public long getDropOffLongitude() {
-        return dropOffLongitude;
+    public Double getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setDropOffLongitude(long dropOffLongitude) {
-        this.dropOffLongitude = dropOffLongitude;
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
-    public String getDropOffAddress() {
-        return dropOffAddress;
+    public int getStatus() {
+        return status;
     }
 
-    public void setDropOffAddress(String dropOffAddress) {
-        this.dropOffAddress = dropOffAddress;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
-    public BookingStatus getBookingStatus() {
-        return bookingStatus;
+    public String getCreatedAt() {
+        return createdAt;
     }
 
-    public void setBookingStatus(BookingStatus bookingStatus) {
-        this.bookingStatus = bookingStatus;
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public double getAmount() {
-        return amount;
+    public String getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

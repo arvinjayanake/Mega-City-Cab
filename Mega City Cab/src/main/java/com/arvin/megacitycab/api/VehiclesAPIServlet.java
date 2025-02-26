@@ -26,7 +26,6 @@ public class VehiclesAPIServlet extends HttpServlet {
         vehicleDao = new VehicleDao();
     }
 
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("application/json");
