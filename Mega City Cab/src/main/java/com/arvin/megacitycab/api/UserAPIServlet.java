@@ -1,7 +1,9 @@
 package com.arvin.megacitycab.api;
 
 import com.arvin.megacitycab.api.error.ApiError;
+import com.arvin.megacitycab.dao.DaoFactory;
 import com.arvin.megacitycab.dao.UserDao;
+import com.arvin.megacitycab.dao.UserDaoImpl;
 import com.arvin.megacitycab.model.base.User;
 import com.arvin.megacitycab.model.enums.UserType;
 import com.google.gson.Gson;
@@ -14,7 +16,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 @WebServlet("/api/user")
 public class UserAPIServlet extends HttpServlet {
@@ -23,7 +24,7 @@ public class UserAPIServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        userDao = new UserDao();
+        userDao = DaoFactory.userDao();
     }
 
     @Override
@@ -42,7 +43,7 @@ public class UserAPIServlet extends HttpServlet {
             }
 
             User user = userDao.getUserById(getUser.getId());
-            if (user != null){
+            if (user != null) {
                 user.setPassword(null);
                 out.print(new Gson().toJson(user));
                 out.flush();
@@ -56,7 +57,7 @@ public class UserAPIServlet extends HttpServlet {
     }
 
     @Override
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response)  {
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = null;
@@ -95,7 +96,7 @@ public class UserAPIServlet extends HttpServlet {
             }
 
             User updateduser = userDao.updateUser(userToUpdate);
-            if (updateduser != null){
+            if (updateduser != null) {
                 out.print(new Gson().toJson(updateduser));
                 out.flush();
             } else {

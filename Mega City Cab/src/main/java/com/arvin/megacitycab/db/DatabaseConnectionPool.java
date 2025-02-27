@@ -1,5 +1,7 @@
 package com.arvin.megacitycab.db;
 
+import com.arvin.megacitycab.config.Config;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -11,14 +13,9 @@ public class DatabaseConnectionPool {
     private final List<Connection> connectionPool;
     private final List<Connection> usedConnections = new ArrayList<>();
 
-    private static final int INITIAL_POOL_SIZE = 10;
-    private static final String URL = "jdbc:mysql://localhost:3306/mega_city_cab";
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "";
-
     private DatabaseConnectionPool() {
-        connectionPool = new ArrayList<>(INITIAL_POOL_SIZE);
-        for (int i = 0; i < INITIAL_POOL_SIZE; i++) {
+        connectionPool = new ArrayList<>(Config.DB_CONNECTION_POOL_SIZE);
+        for (int i = 0; i < Config.DB_CONNECTION_POOL_SIZE; i++) {
             connectionPool.add(createConnection());
         }
     }
@@ -37,7 +34,7 @@ public class DatabaseConnectionPool {
     private Connection createConnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            return DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            return DriverManager.getConnection(Config.DB_URL, Config.DB_USERNAME, Config.DB_PASSWORD);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Failed to create a database connection.", e);
