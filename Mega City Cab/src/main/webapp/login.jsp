@@ -15,7 +15,7 @@
 </head>
 <body>
 <div class="login-container">
-    <h2>Login to Mega City Cab Booking</h2>
+    <h2>Login to Mega City Cab</h2>
 
     <!-- Display error message if login fails -->
     <% if (request.getParameter("error") != null) { %>
@@ -25,15 +25,25 @@
     <% } %>
 
     <!-- Login Form -->
-    <form action="login-submit" method="post">
+    <form action="form-login" method="post">
         <input type="email" name="email" placeholder="Email" required>
         <input type="password" name="password" placeholder="Password" required>
         <input type="submit" value="Login">
     </form>
 
+    <%
+        String error = (String) request.getAttribute("error");
+        if (error != null) {
+    %>
+    <br>
+    <div class="error-message">
+        <%= error %>
+    </div>
+    <% } %>
+
     <!-- Link to Registration Page -->
     <div style="margin-top: 15px;">
-        <p>Don't have an account? <a href="register.jsp">Register here</a></p>
+        <p>Don't have an account? <a href="register">Register here</a></p>
     </div>
 </div>
 </body>

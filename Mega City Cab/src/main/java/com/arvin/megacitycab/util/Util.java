@@ -8,9 +8,14 @@ import java.io.BufferedReader;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.util.Base64;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Util {
 
+    public static String generateOTP() {
+        int otp = ThreadLocalRandom.current().nextInt(1000, 10000);
+        return String.format("%04d", otp);
+    }
     public static String toSHA256(String input) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");

@@ -3,28 +3,4 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
          version="5.0">
-
-    <!-- Form Submissions -->
-    <servlet>
-        <servlet-name>FormServlet</servlet-name>
-        <servlet-class>com.arvin.megacitycab.control.FormControlServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>FormServlet</servlet-name>
-        <url-pattern>/login-submit</url-pattern>
-        <url-pattern>/logout-submit</url-pattern>
-    </servlet-mapping>
-
-    <!-- Navigations -->
-    <servlet>
-        <servlet-name>NavigationServlet</servlet-name>
-        <servlet-class>com.arvin.megacitycab.navigate.NavigationServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>NavigationServlet</servlet-name>
-        <url-pattern>/login</url-pattern>
-        <url-pattern>/home</url-pattern>
-    </servlet-mapping>
 </web-app>

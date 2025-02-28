@@ -17,7 +17,7 @@
 <body>
 <h1><%= "Welcome to Home" %></h1>
 <br/>
-<form action="logout-submit" method="post">
+<form action="form-logout" method="post">
     <input type="submit" value="Logout">
 </form>
 </body>

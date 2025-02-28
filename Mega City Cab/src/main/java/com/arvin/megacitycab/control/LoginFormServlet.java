@@ -6,17 +6,19 @@ import com.arvin.megacitycab.model.base.User;
 import com.arvin.megacitycab.util.ApiClient;
 import com.arvin.megacitycab.util.Util;
 import com.google.gson.Gson;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Map;
 
-public class FormControlServlet extends HttpServlet {
+
+@WebServlet("/form-login")
+public class LoginFormServlet extends HttpServlet {
 
     private UserDao userDao;
 
@@ -27,30 +29,6 @@ public class FormControlServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-        String path = request.getServletPath();
-
-        try {
-            if (path.equals("/login-submit")) {
-                login(request, response);
-            } else if (path.equals("/logout-submit")){
-                logOut(request, response);
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    private void logOut(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession(true);
-        session.removeAttribute("user");
-        try {
-            request.getRequestDispatcher("login").forward(request, response);
-        } catch (Exception e2) {
-            e2.printStackTrace();
-        }
-    }
-
-    private void login(HttpServletRequest request, HttpServletResponse response) {
         try {
             //Api call
             String email = request.getParameter("email");
@@ -70,13 +48,20 @@ public class FormControlServlet extends HttpServlet {
             response.sendRedirect("home");
         } catch (Exception e1) {
             e1.printStackTrace();
-            request.setAttribute("error", "Invalid username or password, please try again.");
             try {
-                request.getRequestDispatcher("login").forward(request, response);
-            } catch (Exception e2) {
+                request.setAttribute("error", "Invalid username or password, please try again.");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
+                dispatcher.forward(request, response);
+            }catch (Exception e2){
                 e2.printStackTrace();
             }
+
+//            request.setAttribute("error", "Invalid username or password, please try again.");
+//            try {
+//                response.sendRedirect("login");
+//            } catch (Exception e2) {
+//                e2.printStackTrace();
+//            }
         }
     }
-
 }
