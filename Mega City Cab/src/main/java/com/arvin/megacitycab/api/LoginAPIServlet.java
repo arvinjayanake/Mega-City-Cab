@@ -35,7 +35,7 @@ public class LoginAPIServlet extends HttpServlet {
         try {
             out = response.getWriter();
 
-            User user = requestToUser(request);
+            User user = Util.requestToUser(request);
             if (user == null || user.getEmail() == null || user.getEmail().isEmpty()
                     || user.getPassword() == null || user.getPassword().isEmpty()){
                 response.setStatus(400);
@@ -68,21 +68,7 @@ public class LoginAPIServlet extends HttpServlet {
         }
     }
 
-    private User requestToUser(HttpServletRequest request) {
-        try {
-            BufferedReader reader = request.getReader();
-            StringBuilder jsonBody = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                jsonBody.append(line);
-            }
-            Gson gson = new Gson();
-            return gson.fromJson(jsonBody.toString(), User.class);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+
 
 
     private void customResponse(PrintWriter out, int status, String msg) {
