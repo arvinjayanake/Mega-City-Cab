@@ -55,13 +55,6 @@ public class LoginFormServlet extends HttpServlet {
             }catch (Exception e2){
                 e2.printStackTrace();
             }
-
-//            request.setAttribute("error", "Invalid username or password, please try again.");
-//            try {
-//                response.sendRedirect("login");
-//            } catch (Exception e2) {
-//                e2.printStackTrace();
-//            }
         }
     }
 }

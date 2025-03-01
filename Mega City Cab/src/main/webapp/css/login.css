@@ -53,13 +53,6 @@ body {
     margin-bottom: 15px;
 }
 
-.error-message {
-    color: #dc3545;
-    font-size: 0.9em;
-    margin: 5px 0;
-    display: none;
-}
-
 input[type="text"] {
     width: 100%;
     padding: 12px;

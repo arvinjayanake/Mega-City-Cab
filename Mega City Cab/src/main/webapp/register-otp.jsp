@@ -32,13 +32,6 @@
 <div class="login-container">
     <h2>OTP Verification</h2>
 
-    <!-- Display error message if login fails -->
-    <% if (request.getParameter("error") != null) { %>
-    <div class="error-message">
-        Invalid username or password. Please try again.
-    </div>
-    <% } %>
-
     <!-- OTP Entry Form -->
     <form action="form-register-otp" method="post" onsubmit="return validateOTP()">
         <input type="hidden" name="user_id" value="<%= user_id %>">

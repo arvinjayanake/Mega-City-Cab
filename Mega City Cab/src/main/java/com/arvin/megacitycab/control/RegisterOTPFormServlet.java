@@ -45,6 +45,10 @@ public class RegisterOTPFormServlet extends HttpServlet {
             User user = new Gson().fromJson(apiResponse, User.class);
 
             if (user != null){
+                //Set data to session
+                HttpSession session = request.getSession(true);
+                session.setAttribute("user", user);
+
                 response.sendRedirect("home");
             } else {
                 request.setAttribute("error", "Unable to verify OTP, please try again.");
@@ -57,7 +61,7 @@ public class RegisterOTPFormServlet extends HttpServlet {
                 request.setAttribute("error", "Unable to verify OTP, please try again.");
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/register-otp.jsp");
                 dispatcher.forward(request, response);
-            } catch (Exception e2) {
+            }catch (Exception e2){
                 e2.printStackTrace();
             }
         }
