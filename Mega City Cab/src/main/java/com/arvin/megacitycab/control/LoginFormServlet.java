@@ -3,6 +3,7 @@ package com.arvin.megacitycab.control;
 import com.arvin.megacitycab.dao.DaoFactory;
 import com.arvin.megacitycab.dao.UserDao;
 import com.arvin.megacitycab.model.base.User;
+import com.arvin.megacitycab.model.enums.UserType;
 import com.arvin.megacitycab.util.ApiClient;
 import com.arvin.megacitycab.util.Util;
 import com.google.gson.Gson;
@@ -45,7 +46,14 @@ public class LoginFormServlet extends HttpServlet {
             HttpSession session = request.getSession(true);
             session.setAttribute("user", user);
 
-            response.sendRedirect("home");
+
+            if (user.getType() == UserType.ADMIN.getValue()){
+                response.sendRedirect("admin-home");
+            } else {
+                response.sendRedirect("home");
+            }
+
+
         } catch (Exception e1) {
             e1.printStackTrace();
             try {
