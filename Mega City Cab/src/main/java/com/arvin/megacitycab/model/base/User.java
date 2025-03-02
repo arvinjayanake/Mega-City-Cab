@@ -123,4 +123,14 @@ public class User {
         this.updated_at = updated_at;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", nic='" + nic + '\'' +
+                ", address='" + address + '\'' +
+                ", email='" + email + '\'' +
+                ", mobile='" + mobile + '\'' +
+                '}';
+    }
 }

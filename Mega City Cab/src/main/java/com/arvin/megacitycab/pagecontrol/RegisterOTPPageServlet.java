@@ -1,4 +1,4 @@
-package com.arvin.megacitycab.navigate;
+package com.arvin.megacitycab.pagecontrol;
 
 
 import jakarta.servlet.ServletException;

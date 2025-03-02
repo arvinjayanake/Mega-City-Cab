@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import javax.swing.plaf.TextUI;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -35,14 +36,14 @@ public class UserAPIServlet extends HttpServlet {
 
         try {
             out = response.getWriter();
-            User getUser = requestToUser(request);
+            String userId = request.getParameter("id");
 
-            if (getUser == null || getUser.getId() == 0) {
+            if (userId == null || userId.isEmpty()) {
                 customResponse(out, 400, "Invalid user data or missing id.");
                 return;
             }
 
-            User user = userDao.getUserById(getUser.getId());
+            User user = userDao.getUserById(Integer.parseInt(userId));
             if (user != null) {
                 user.setPassword(null);
                 out.print(new Gson().toJson(user));

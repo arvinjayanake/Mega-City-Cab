@@ -11,7 +11,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Mega City Cab Booking - Register</title>
-    <link rel="stylesheet" href="css/login.css"> <!-- Reuse same CSS -->
+    <link rel="stylesheet" href="css/login.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            background: url("img/login_bg.jpg");
+            background-size: cover;
+        }
+    </style>
 </head>
 <body>
 <div class="login-container">
@@ -52,7 +61,7 @@
                minlength="5"
                required>
 
-        <input type="submit" value="Register">
+        <input type="submit" style="background: #0056b3" value="Register">
     </form>
 
     <%

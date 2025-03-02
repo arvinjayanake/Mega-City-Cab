@@ -1,4 +1,4 @@
-package com.arvin.megacitycab.navigate;
+package com.arvin.megacitycab.pagecontrol;
 
 
 import jakarta.servlet.ServletException;
@@ -9,10 +9,11 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/register")
-public class RegisterPageServlet extends HttpServlet {
+@WebServlet("/login")
+public class LoginPageServlet extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("register.jsp").forward(request, response);
+        request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 }

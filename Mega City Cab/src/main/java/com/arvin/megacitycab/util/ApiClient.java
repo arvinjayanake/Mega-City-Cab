@@ -24,6 +24,12 @@ public class ApiClient {
         return getResponse(connection);
     }
 
+    public static String put(String url, Map<String, Object> body) throws IOException {
+        HttpURLConnection connection = createConnection(url, "PUT");
+        sendRequestBody(connection, body);
+        return getResponse(connection);
+    }
+
     private static void sendRequestBody(HttpURLConnection connection, Map<String, Object> body) throws IOException {
         String jsonBody = new Gson().toJson(body);
         try (OutputStream os = connection.getOutputStream()) {

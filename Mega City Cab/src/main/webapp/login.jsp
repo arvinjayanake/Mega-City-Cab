@@ -1,50 +1,48 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Arvin_J
-  Date: 2/27/2025
-  Time: 10:44 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Mega City Cab Booking - Login</title>
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" type="text/css" href="css/login-style.css">
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <title>Mega City Cab - Login</title>
 </head>
 <body>
+
 <div class="login-container">
-    <h2>Login to Mega City Cab</h2>
-
-    <!-- Display error message if login fails -->
-    <% if (request.getParameter("error") != null) { %>
-    <div class="error-message">
-        Invalid username or password. Please try again.
+    <div class="img1">
+        <img src="img/login-banner.jpg" alt="" width="300px" class="imgs">
     </div>
-    <% } %>
+    <div class="lgl1">
+        <form class="login-form" action="form-login" method="post">
+            <h2>Login to Mega City Cab</h2>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
 
-    <!-- Login Form -->
-    <form action="form-login" method="post">
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="submit" value="Login">
-    </form>
+            <%
+                String error = (String) request.getAttribute("error");
+                if (error != null) {
+            %>
+            <br>
+            <div class="error-message">
+                <%= error %>
+            </div>
+            <% } %>
 
-    <%
-        String error = (String) request.getAttribute("error");
-        if (error != null) {
-    %>
-    <br>
-    <div class="error-message">
-        <%= error %>
-    </div>
-    <% } %>
+            <button type="submit">Login</button>
+            <div style="color: gray; margin-top: 20px;">
+                Don't have an account?<br>
+                <a href="register">Register here</a>
+            </div>
+        </form>
 
-    <!-- Link to Registration Page -->
-    <div style="margin-top: 15px;">
-        <p>Don't have an account? <a href="register">Register here</a></p>
     </div>
 </div>
+
 </body>
 </html>
