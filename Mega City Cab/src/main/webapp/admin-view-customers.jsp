@@ -62,6 +62,7 @@
                         <th>Mobile</th>
                         <th>Verified</th>
                         <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -79,6 +80,9 @@
                         <td class="cell-content"><%= user.isVerified() ? "Yes" : "No" %></td>
                         <td class="cell-content">
                             <a class="table-button" href="admin-update-user?id=<%= user.getId() %>" type="button"><i class="fa fa-edit"></i></a>
+                        </td>
+                        <td class="cell-content">
+                            <a class="table-button" href="admin-delete-user?id=<%= user.getId() %>" type="button"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                     <%
