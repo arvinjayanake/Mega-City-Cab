@@ -26,7 +26,7 @@
         <div class="card" style="width: 400px;">
             <!-- Card Header -->
             <div class="card-header">
-                <h3 class="card-title">New Vehicle</h3>
+                <h3 class="card-title">Update Vehicle</h3>
             </div>
             <!-- Card Body-->
             <div class="card-body">
