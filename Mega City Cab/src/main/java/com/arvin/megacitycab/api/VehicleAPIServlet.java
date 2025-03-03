@@ -33,14 +33,14 @@ public class VehicleAPIServlet extends HttpServlet {
 
         try {
             out = response.getWriter();
-            Vehicle getVehicle = requestToVehicle(request);
+            String vehicleId = request.getParameter("id");
 
-            if (getVehicle == null || getVehicle.getId() == 0) {
+            if (vehicleId == null || vehicleId.isEmpty()) {
                 customResponse(out, 400, "Invalid vehicle data or missing id.");
                 return;
             }
 
-            Vehicle vehicle = vehicleDao.getVehicleById(getVehicle.getId());
+            Vehicle vehicle = vehicleDao.getVehicleById(Integer.parseInt(vehicleId));
             if (vehicle != null) {
                 out.print(new Gson().toJson(vehicle));
                 out.flush();

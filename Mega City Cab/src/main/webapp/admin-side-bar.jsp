@@ -38,6 +38,23 @@
         <% } %>
     </ul>
 
+    <div style="margin-top: 16px; font-size: 12px; font-weight: bold; color: #2196f3">Manage Vehicles</div>
+    <ul style="margin-top: 8px;">
+        <%-- New Vehicle--%>
+        <% if (currentPage.contains("admin-new-vehicle.jsp")) { %>
+        <li>New Vehicle</li>
+        <% } else { %>
+        <li><a href="admin-new-vehicle">New Vehicle</a></li>
+        <% } %>
+
+        <%-- Vehicles --%>
+        <% if (currentPage.contains("admin-view-vehicles.jsp")) { %>
+        <li>Vehicles</li>
+        <% } else { %>
+        <li><a href="admin-view-vehicles">Vehicles</a></li>
+        <% } %>
+    </ul>
+
     <div style="margin-top: 16px; font-size: 12px; font-weight: bold; color: #2196f3">Other Controls:</div>
     <ul style="margin-top: 8px;">
         <li><a href="form-logout">Logout</a></li>

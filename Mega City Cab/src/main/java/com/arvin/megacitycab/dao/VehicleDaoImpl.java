@@ -56,7 +56,7 @@ public class VehicleDaoImpl extends BaseDao implements VehicleDao {
     @Override
     public List<Vehicle> getAllVehicles() throws SQLException {
         List<Vehicle> vehicleList = new ArrayList<>();
-        String sql = "SELECT * FROM vehicle";
+        String sql = "SELECT * FROM vehicle ORDER BY id DESC";
         Connection conn = null;
         try {
             conn = DatabaseConnectionPool.getInstance().getConnection();

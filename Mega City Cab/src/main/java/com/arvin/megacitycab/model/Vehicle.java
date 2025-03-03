@@ -112,4 +112,17 @@ public class Vehicle {
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
     }
+
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "make='" + make + '\'' +
+                ", model='" + model + '\'' +
+                ", year=" + year +
+                ", registration_number='" + registration_number + '\'' +
+                ", passenger_capacity=" + passenger_capacity +
+                ", luggage_capacity='" + luggage_capacity + '\'' +
+                ", price_per_km=" + price_per_km +
+                '}';
+    }
 }
