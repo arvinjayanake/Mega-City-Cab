@@ -14,24 +14,8 @@
 
 <body>
 <div class="container">
-    <div class="sidebar">
-        <div class="logo-title">
-            <img src="img/app_icon.png" alt="Site Logo">
-            <h2>Mega City Cab Admin</h2>
-        </div>
-        <div style="margin-top: 16px; font-size: 12px; font-weight: bold; color: #2196f3">Manage Users</div>
-        <ul style="margin-top: 8px;">
-            <li>New User</li>
-            <li><a href="admin-view-customers">Customers</a></li>
-            <li><a href="admin-view-drivers">Drivers</a></li>
-            <li><a href="admin-view-admins">Admins</a></li>
-        </ul>
 
-        <div style="margin-top: 16px; font-size: 12px; font-weight: bold; color: #2196f3">Other Controls:</div>
-        <ul style="margin-top: 8px;">
-            <li><a href="form-logout">Logout</a></li>
-        </ul>
-    </div>
+    <jsp:include page="admin-side-bar.jsp" />
 
     <div class="content">
         <!-- Content Card-->
