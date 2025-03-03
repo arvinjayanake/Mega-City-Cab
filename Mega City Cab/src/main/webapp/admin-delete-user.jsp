@@ -65,7 +65,7 @@
                     <li><strong>Email:</strong> <%= user.getEmail()  %></li>
                     <li><strong>Mobile:</strong> <%= user.getMobile()  %></li>
                     <li><strong>Type:</strong> <%= userTypeString  %></li>
-                    <li><strong>Verified Status:</strong> <%= user.isVerified() ? "Verified" : "Not Verified"  %></li>
+                    <li><strong>Verified Status:</strong> <%= user.getIs_verified() == 1 ? "Verified" : "Not Verified"  %></li>
                 </ul>
 
                 <form action="form-delete-user" method="post">

@@ -10,7 +10,7 @@ public class User {
     protected int type;
     protected String password;
     protected String verification_code;
-    protected Boolean isVerified = false;
+    protected int is_verified = 0;
     protected String access_token;
     protected String created_at;
     protected String updated_at;
@@ -71,12 +71,12 @@ public class User {
         this.password = password;
     }
 
-    public Boolean isVerified() {
-        return isVerified;
+    public int getIs_verified() {
+        return is_verified;
     }
 
-    public void setVerified(Boolean verified) {
-        isVerified = verified;
+    public void setIs_verified(int is_verified) {
+        this.is_verified = is_verified;
     }
 
     public String getVerification_code() {
@@ -85,10 +85,6 @@ public class User {
 
     public void setVerification_code(String verification_code) {
         this.verification_code = verification_code;
-    }
-
-    public Boolean getVerified() {
-        return isVerified;
     }
 
     public int getType() {

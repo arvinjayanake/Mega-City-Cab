@@ -26,6 +26,7 @@
         </div>
         <div style="margin-top: 16px; font-size: 12px; font-weight: bold; color: #2196f3">Manage Users</div>
         <ul style="margin-top: 8px;">
+            <li><a href="admin-new-user">New User</a></li>
             <li><a href="admin-view-customers">Customers</a></li>
             <li>Drivers</li>
             <li><a href="admin-view-admins">Admins</a></li>
@@ -61,7 +62,7 @@
                         <th>Email</th>
                         <th>Mobile</th>
                         <th>Verified</th>
-                        <th>Edit</th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -76,9 +77,10 @@
                         <td class="cell-content"><%= user.getAddress() != null ? user.getAddress() : "-" %></td>
                         <td class="cell-content"><%= user.getEmail() %></td>
                         <td class="cell-content"><%= user.getMobile() %></td>
-                        <td class="cell-content"><%= user.isVerified() ? "Yes" : "No" %></td>
+                        <td class="cell-content"><%= user.getIs_verified() == 1 ? "Yes" : "No" %></td>
                         <td class="cell-content">
-                            <button class="table-button" type="button"><i class="fa fa-edit"></i></button>
+                            <a class="table-button" href="admin-update-user?id=<%= user.getId() %>" type="button"><i class="fa fa-edit"></i></a>
+                            <a class="table-button" href="admin-delete-user?id=<%= user.getId() %>" type="button"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                     <%

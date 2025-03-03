@@ -59,7 +59,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
                 stmt.setInt(6, user.getType());
                 stmt.setString(7, user.getPassword());
                 stmt.setString(8, user.getVerification_code());
-                stmt.setBoolean(9, user.isVerified());
+                stmt.setInt(9, user.getIs_verified());
                 int rowsAffected = stmt.executeUpdate();
 
                 // Retrieve the generated ID
@@ -83,7 +83,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
     @Override
     public List<User> getAllUsers(int type) throws SQLException {
         List<User> userList = new ArrayList<>();
-        String sql = "SELECT id, name, nic, address, email, mobile, type, is_verified, created_at, updated_at FROM user WHERE type = " + type;
+        String sql = "SELECT id, name, nic, address, email, mobile, type, is_verified, created_at, updated_at FROM user WHERE type = " + type + " ORDER BY id DESC ";
         Connection conn = null;
         try {
             conn = DatabaseConnectionPool.getInstance().getConnection();
@@ -163,10 +163,8 @@ public class UserDaoImpl extends BaseDao implements UserDao {
             params.add(user.getVerification_code());
         }
 
-        if (user.isVerified() != null) {
-            sql.append("is_verified = ?, ");
-            params.add(user.isVerified());
-        }
+        sql.append("is_verified = ?, ");
+        params.add(user.getIs_verified());
 
         if (user.getAccess_token() != null) {
             sql.append("access_token = ?, ");
@@ -231,7 +229,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
         user.setMobile(resToString(rs, "mobile"));
         user.setPassword(resToString(rs, "password"));
         user.setVerification_code(resToString(rs, "verification_code"));
-        user.setVerified(rs.getBoolean("is_verified"));
+        user.setIs_verified(rs.getInt("is_verified"));
         user.setCreated_at(resToString(rs, "created_at"));
         user.setUpdated_at(resToString(rs, "updated_at"));
         return user;

@@ -50,7 +50,7 @@ public class UserOTPAPIServlet extends HttpServlet {
                         user.setPassword(null);
 
                         //otp verified update
-                        user.setVerified(true);
+                        user.setIs_verified(1);
                         userDao.updateUser(user);
 
                         out.print(new Gson().toJson(user));
