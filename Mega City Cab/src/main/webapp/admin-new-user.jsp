@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FCMS - Fitness Centers</title>
+    <title>Mega City Cab - New User</title>
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Open+Sans:wght@400;600&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin-style.css">
 </head>
 
 <body>
@@ -48,6 +48,7 @@
                     <div class="form-group">
                         <label for="nic">NIC <span class="form-required">*</span></label>
                         <input type="text" id="nic" name="nic"
+                               maxlength="12"
                                placeholder="NIC Number"
                                pattern="(\d{12}|\d{9}V)"
                                title="Enter valid NIC (12 digits or 9 digits with V)"
@@ -73,6 +74,7 @@
                                id="mobile"
                                placeholder="Mobile Number"
                                pattern="[0-9]{10}"
+                               maxlength="10"
                                title="10 digit mobile number"
                                required>
                     </div>

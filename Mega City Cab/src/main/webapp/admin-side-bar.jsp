@@ -1,9 +1,8 @@
 <%
     String currentPage = request.getRequestURI();
-    System.out.println("Current page: " + currentPage);
 %>
 <div class="sidebar">
-    <div class="logo-title">
+    <div class="logo-title" style="font-size: 13px;">
         <img src="img/app_icon.png" alt="Site Logo">
         <h2>Mega City Cab Admin</h2>
     </div>

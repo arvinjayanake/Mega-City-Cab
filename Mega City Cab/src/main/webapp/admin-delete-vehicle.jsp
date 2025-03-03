@@ -1,6 +1,3 @@
-]<%@ page import="com.arvin.megacitycab.model.base.User" %>
-<%@ page import="java.util.List" %>
-<%@ page import="com.arvin.megacitycab.model.enums.UserType" %>
 <%@ page import="com.arvin.megacitycab.model.Vehicle" %>
 <%@ page import="com.arvin.megacitycab.model.enums.VehicleStatus" %>
 <%@ page import="com.arvin.megacitycab.model.enums.VehicleCategory" %>
@@ -14,12 +11,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FCMS - Fitness Centers</title>
+    <title>Mega City Cab - Delete Vehicle</title>
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Open+Sans:wght@400;600&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin-style.css">
 </head>
 
 <body>
