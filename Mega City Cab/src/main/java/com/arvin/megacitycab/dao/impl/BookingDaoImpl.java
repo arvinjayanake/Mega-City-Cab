@@ -1,5 +1,6 @@
-package com.arvin.megacitycab.dao;
+package com.arvin.megacitycab.dao.impl;
 
+import com.arvin.megacitycab.dao.BookingDao;
 import com.arvin.megacitycab.dao.base.BaseDao;
 import com.arvin.megacitycab.db.DatabaseConnectionPool;
 import com.arvin.megacitycab.model.Booking;
@@ -11,7 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookingDaoImpl extends BaseDao implements BookingDao {
+class BookingDaoImpl extends BaseDao implements BookingDao {
 
     @Override
     public Booking addBooking(Booking booking) throws SQLException {

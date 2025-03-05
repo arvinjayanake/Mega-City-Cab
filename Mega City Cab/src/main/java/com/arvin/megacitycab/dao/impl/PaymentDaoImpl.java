@@ -1,5 +1,6 @@
-package com.arvin.megacitycab.dao;
+package com.arvin.megacitycab.dao.impl;
 
+import com.arvin.megacitycab.dao.PaymentDao;
 import com.arvin.megacitycab.dao.base.BaseDao;
 import com.arvin.megacitycab.db.DatabaseConnectionPool;
 import com.arvin.megacitycab.model.Payment;
@@ -11,7 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PaymentDaoImpl extends BaseDao implements PaymentDao {
+class PaymentDaoImpl extends BaseDao implements PaymentDao {
 
     @Override
     public Payment addPayment(Payment payment) throws SQLException {

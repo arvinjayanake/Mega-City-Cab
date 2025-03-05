@@ -1,8 +1,8 @@
 package com.arvin.megacitycab.formcontrol;
 
+import com.arvin.megacitycab.apiclient.VehicleAPIController;
 import com.arvin.megacitycab.config.Config;
-import com.arvin.megacitycab.model.enums.UserType;
-import com.arvin.megacitycab.util.ApiClient;
+import com.arvin.megacitycab.apiclient.ApiClient;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,12 +19,10 @@ public class DeleteVehicleFormServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         try {
             //Data
-            String id = request.getParameter("id");
+            int id = Integer.parseInt(request.getParameter("id"));
 
             //API call
-            String url = Config.API_URL_BASE + "vehicle";
-            Map<String, Object> requestBody = Map.of("id", id);
-            ApiClient.delete(url, requestBody);
+            VehicleAPIController.deleteVehicleById(id);
 
             //redirect
             response.sendRedirect("admin-view-vehicles");

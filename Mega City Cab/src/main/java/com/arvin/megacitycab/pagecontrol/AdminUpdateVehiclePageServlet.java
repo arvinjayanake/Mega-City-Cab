@@ -1,10 +1,10 @@
 package com.arvin.megacitycab.pagecontrol;
 
 
+import com.arvin.megacitycab.apiclient.VehicleAPIController;
 import com.arvin.megacitycab.config.Config;
 import com.arvin.megacitycab.model.Vehicle;
-import com.arvin.megacitycab.model.base.User;
-import com.arvin.megacitycab.util.ApiClient;
+import com.arvin.megacitycab.apiclient.ApiClient;
 import com.google.gson.Gson;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -22,14 +22,9 @@ public class AdminUpdateVehiclePageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             //get data
-            String vehicleId = request.getParameter("id");
+            int vehicleId = Integer.parseInt(request.getParameter("id"));
+            Vehicle vehicle = VehicleAPIController.getVehicleById(vehicleId);
 
-            //api call
-            String url = Config.API_URL_BASE + "vehicle?id=" + vehicleId;
-            String apiResponse = ApiClient.get(url);
-
-            //set data to jsp
-            Vehicle vehicle = new Gson().fromJson(apiResponse, Vehicle.class);
             request.setAttribute("vehicle", vehicle);
             request.getRequestDispatcher("admin-update-vehicle.jsp").forward(request, response);
         } catch (Exception e1) {

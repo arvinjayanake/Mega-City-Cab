@@ -1,9 +1,8 @@
 package com.arvin.megacitycab.api;
 
 import com.arvin.megacitycab.api.error.ApiError;
-import com.arvin.megacitycab.dao.DaoFactory;
+import com.arvin.megacitycab.dao.impl.DaoFactory;
 import com.arvin.megacitycab.dao.VehicleDao;
-import com.arvin.megacitycab.dao.VehicleDaoImpl;
 import com.arvin.megacitycab.model.Vehicle;
 import com.google.gson.Gson;
 import jakarta.servlet.ServletException;

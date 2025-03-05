@@ -1,9 +1,10 @@
 package com.arvin.megacitycab.pagecontrol;
 
 
+import com.arvin.megacitycab.apiclient.UserAPIController;
 import com.arvin.megacitycab.config.Config;
 import com.arvin.megacitycab.model.base.User;
-import com.arvin.megacitycab.util.ApiClient;
+import com.arvin.megacitycab.apiclient.ApiClient;
 import com.google.gson.Gson;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -21,14 +22,11 @@ public class AdminUpdateUserPageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             //get data
-            String userId = request.getParameter("id");
+            int userId = Integer.parseInt(request.getParameter("id"));
 
             //api call
-            String url = Config.API_URL_BASE + "user?id=" + userId;
-            String apiResponse = ApiClient.get(url);
+            User user = UserAPIController.getUserById(userId);
 
-            //set data to jsp
-            User user = new Gson().fromJson(apiResponse, User.class);
             request.setAttribute("user", user);
             request.getRequestDispatcher("admin-update-user.jsp").forward(request, response);
         } catch (Exception e1) {

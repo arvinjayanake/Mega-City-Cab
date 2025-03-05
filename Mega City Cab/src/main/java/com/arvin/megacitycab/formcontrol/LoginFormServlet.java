@@ -1,10 +1,11 @@
 package com.arvin.megacitycab.formcontrol;
 
-import com.arvin.megacitycab.dao.DaoFactory;
+import com.arvin.megacitycab.apiclient.UserAPIController;
+import com.arvin.megacitycab.dao.impl.DaoFactory;
 import com.arvin.megacitycab.dao.UserDao;
 import com.arvin.megacitycab.model.base.User;
 import com.arvin.megacitycab.model.enums.UserType;
-import com.arvin.megacitycab.util.ApiClient;
+import com.arvin.megacitycab.apiclient.ApiClient;
 import com.arvin.megacitycab.util.Util;
 import com.google.gson.Gson;
 import jakarta.servlet.RequestDispatcher;
@@ -34,13 +35,7 @@ public class LoginFormServlet extends HttpServlet {
             //Api call
             String email = request.getParameter("email");
             String password = request.getParameter("password");
-            String url = "http://localhost:8089/mega_city_cab_war_exploded/api/user/login";
-            Map<String, Object> requestBody = Map.of(
-                    "email", email,
-                    "password", Util.toSHA256(password)
-            );
-            String apiResponse = ApiClient.post(url, requestBody);
-            User user = new Gson().fromJson(apiResponse, User.class);
+            User user = UserAPIController.login(email, password);
 
             //Set data to session
             HttpSession session = request.getSession(true);

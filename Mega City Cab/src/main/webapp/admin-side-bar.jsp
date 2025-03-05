@@ -3,7 +3,7 @@
 %>
 <div class="sidebar">
     <div class="logo-title" style="font-size: 13px;">
-        <img src="../img/app_icon.png" alt="Site Logo">
+        <img src="img/app_icon.png" alt="Site Logo">
         <h2>Mega City Cab Admin</h2>
     </div>
     <div style="margin-top: 16px; font-size: 12px; font-weight: bold; color: #2196f3">Manage Users</div>

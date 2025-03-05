@@ -1,4 +1,4 @@
-package com.arvin.megacitycab.dao;
+package com.arvin.megacitycab.dao.impl;
 
 import com.arvin.megacitycab.dao.VehicleDao;
 import com.arvin.megacitycab.dao.base.BaseDao;
@@ -11,7 +11,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VehicleDaoImpl extends BaseDao implements VehicleDao {
+class VehicleDaoImpl extends BaseDao implements VehicleDao {
 
     VehicleDaoImpl() {
     }

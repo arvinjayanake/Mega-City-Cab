@@ -1,11 +1,12 @@
 package com.arvin.megacitycab.formcontrol;
 
+import com.arvin.megacitycab.apiclient.UserAPIController;
 import com.arvin.megacitycab.config.Config;
-import com.arvin.megacitycab.dao.DaoFactory;
+import com.arvin.megacitycab.dao.impl.DaoFactory;
 import com.arvin.megacitycab.dao.UserDao;
 import com.arvin.megacitycab.model.base.User;
 import com.arvin.megacitycab.model.enums.UserType;
-import com.arvin.megacitycab.util.ApiClient;
+import com.arvin.megacitycab.apiclient.ApiClient;
 import com.arvin.megacitycab.util.Util;
 import com.google.gson.Gson;
 import jakarta.servlet.RequestDispatcher;
@@ -14,7 +15,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 import java.util.Map;
 
@@ -33,33 +33,18 @@ public class UpdateUserFormServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         try {
             //Data
-            String id = request.getParameter("id");
-            String name = request.getParameter("name");
-            String nic = request.getParameter("nic");
-            String address = request.getParameter("address");
-            String email = request.getParameter("email");
-            String mobile = request.getParameter("mobile");
-            String is_verified = request.getParameter("is_verified");
-            String password = request.getParameter("password");
+            User mUser = new User();
+            mUser.setId(Integer.parseInt(request.getParameter("id")));
+            mUser.setName(request.getParameter("name"));
+            mUser.setNic(request.getParameter("nic"));
+            mUser.setAddress(request.getParameter("address"));
+            mUser.setEmail(request.getParameter("email"));
+            mUser.setMobile(request.getParameter("mobile"));
+            mUser.setIs_verified(Integer.parseInt(request.getParameter("is_verified")));
+            mUser.setPassword(request.getParameter("password"));
 
-            //API call
-            String url = Config.API_URL_BASE + "user";
-            Map<String, Object> requestBody = new java.util.HashMap<>(Map.of(
-                    "id", id,
-                    "name", name,
-                    "nic", nic,
-                    "address", address,
-                    "email", email,
-                    "mobile", mobile,
-                    "is_verified", is_verified
-            ));
-
-            if (password != null && !password.isEmpty()){
-                requestBody.put("password", Util.toSHA256(password));
-            }
-
-            String apiResponse = ApiClient.put(url, requestBody);
-            User user = new Gson().fromJson(apiResponse, User.class);
+            //Api call
+            User user = UserAPIController.updateUser(mUser);
 
             if (user != null) {
                 if (user.getType() == UserType.CUSTOMER.getValue()) {

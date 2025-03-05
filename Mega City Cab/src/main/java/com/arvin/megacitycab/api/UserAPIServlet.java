@@ -1,9 +1,8 @@
 package com.arvin.megacitycab.api;
 
 import com.arvin.megacitycab.api.error.ApiError;
-import com.arvin.megacitycab.dao.DaoFactory;
+import com.arvin.megacitycab.dao.impl.DaoFactory;
 import com.arvin.megacitycab.dao.UserDao;
-import com.arvin.megacitycab.dao.UserDaoImpl;
 import com.arvin.megacitycab.model.base.User;
 import com.arvin.megacitycab.model.enums.UserType;
 import com.google.gson.Gson;
@@ -13,7 +12,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import javax.swing.plaf.TextUI;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;

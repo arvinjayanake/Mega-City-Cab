@@ -1,9 +1,8 @@
 package com.arvin.megacitycab.api;
 
 import com.arvin.megacitycab.api.error.ApiError;
-import com.arvin.megacitycab.dao.DaoFactory;
+import com.arvin.megacitycab.dao.impl.DaoFactory;
 import com.arvin.megacitycab.dao.UserDao;
-import com.arvin.megacitycab.dao.UserDaoImpl;
 import com.arvin.megacitycab.model.base.User;
 import com.arvin.megacitycab.model.enums.UserType;
 import com.google.gson.Gson;

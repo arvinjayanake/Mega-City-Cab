@@ -1,4 +1,4 @@
-package com.arvin.megacitycab.dao;
+package com.arvin.megacitycab.dao.impl;
 
 import com.arvin.megacitycab.dao.UserDao;
 import com.arvin.megacitycab.dao.base.BaseDao;
@@ -13,7 +13,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDaoImpl extends BaseDao implements UserDao {
+class UserDaoImpl extends BaseDao implements UserDao {
 
     UserDaoImpl(){}
 

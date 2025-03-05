@@ -1,9 +1,10 @@
 package com.arvin.megacitycab.pagecontrol;
 
 
+import com.arvin.megacitycab.apiclient.UserAPIController;
 import com.arvin.megacitycab.config.Config;
 import com.arvin.megacitycab.model.base.User;
-import com.arvin.megacitycab.util.ApiClient;
+import com.arvin.megacitycab.apiclient.ApiClient;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import jakarta.servlet.RequestDispatcher;
@@ -29,12 +30,7 @@ public class AdminViewCustomerPageServlet extends HttpServlet {
 
         try {
             //Api call
-            String url = Config.API_URL_BASE + "users?type=1";
-            String apiResponse = ApiClient.get(url);
-
-            Gson gson = new Gson();
-            Type userListType = new TypeToken<List<User>>() {}.getType();
-            List<User> users = gson.fromJson(apiResponse, userListType);
+            List<User> users = UserAPIController.getAllCustomers();
 
             String searchTxt = request.getParameter("search");
             if (searchTxt != null){
@@ -61,16 +57,5 @@ public class AdminViewCustomerPageServlet extends HttpServlet {
                 e2.printStackTrace();
             }
         }
-
-//        if (userObj instanceof User) {
-//            User user = (User) userObj;
-//            if (user.getType() == UserType.ADMIN.getValue()){
-//                request.getRequestDispatcher("admin-view-customers.jsp").forward(request, response);
-//            } else {
-//                response.sendRedirect("login");
-//            }
-//        } else {
-//            response.sendRedirect("login");
-//        }
     }
 }

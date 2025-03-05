@@ -1,11 +1,9 @@
 package com.arvin.megacitycab.formcontrol;
 
+import com.arvin.megacitycab.apiclient.VehicleAPIController;
 import com.arvin.megacitycab.config.Config;
 import com.arvin.megacitycab.model.Vehicle;
-import com.arvin.megacitycab.model.base.User;
-import com.arvin.megacitycab.model.enums.UserType;
-import com.arvin.megacitycab.util.ApiClient;
-import com.arvin.megacitycab.util.Util;
+import com.arvin.megacitycab.apiclient.ApiClient;
 import com.google.gson.Gson;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.annotation.WebServlet;
@@ -23,31 +21,19 @@ public class NewVehicleFormServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         try {
             //Data
-            String make = request.getParameter("make");
-            String model = request.getParameter("model");
-            String category = request.getParameter("category");
-            String year = request.getParameter("year");
-            String registration_number = request.getParameter("registration_number");
-            String passenger_capacity = request.getParameter("passenger_capacity");
-            String luggage_capacity = request.getParameter("luggage_capacity");
-            String price_per_km = request.getParameter("price_per_km");
-            String status = request.getParameter("status");
+            Vehicle mVehicle = new Vehicle();
+            mVehicle.setMake(request.getParameter("make"));
+            mVehicle.setModel(request.getParameter("model"));
+            mVehicle.setCategory(Integer.parseInt(request.getParameter("category")));
+            mVehicle.setYear(Integer.parseInt(request.getParameter("year")));
+            mVehicle.setRegistration_number(request.getParameter("registration_number"));
+            mVehicle.setPassenger_capacity(Integer.parseInt(request.getParameter("passenger_capacity")));
+            mVehicle.setLuggage_capacity(request.getParameter("luggage_capacity"));
+            mVehicle.setPrice_per_km(Double.parseDouble(request.getParameter("price_per_km")));
+            mVehicle.setStatus(Integer.parseInt(request.getParameter("status")));
 
-            //API call
-            String url = Config.API_URL_BASE + "vehicle";
-            Map<String, Object> requestBody = Map.of(
-                    "make", make,
-                    "model", model,
-                    "category", category,
-                    "year", year,
-                    "registration_number", registration_number,
-                    "passenger_capacity", passenger_capacity,
-                    "luggage_capacity", luggage_capacity,
-                    "price_per_km", price_per_km,
-                    "status", status
-            );
-            String apiResponse = ApiClient.post(url, requestBody);
-            Vehicle vehicle = new Gson().fromJson(apiResponse, Vehicle.class);
+            //Api call
+            VehicleAPIController.createVehicle(mVehicle);
 
             //redirect
             response.sendRedirect("admin-view-vehicles");

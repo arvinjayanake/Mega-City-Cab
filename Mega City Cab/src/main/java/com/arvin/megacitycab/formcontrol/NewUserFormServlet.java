@@ -1,15 +1,13 @@
 package com.arvin.megacitycab.formcontrol;
 
+import com.arvin.megacitycab.apiclient.UserAPIController;
 import com.arvin.megacitycab.config.Config;
-import com.arvin.megacitycab.dao.DaoFactory;
-import com.arvin.megacitycab.dao.UserDao;
 import com.arvin.megacitycab.model.base.User;
 import com.arvin.megacitycab.model.enums.UserType;
-import com.arvin.megacitycab.util.ApiClient;
+import com.arvin.megacitycab.apiclient.ApiClient;
 import com.arvin.megacitycab.util.Util;
 import com.google.gson.Gson;
 import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,29 +23,19 @@ public class NewUserFormServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         try {
             //Data
-            String type = request.getParameter("user_type");
-            String name = request.getParameter("name");
-            String nic = request.getParameter("nic");
-            String address = request.getParameter("address");
-            String email = request.getParameter("email");
-            String mobile = request.getParameter("mobile");
-            String password = request.getParameter("password");
+            User mUser = new User();
+            mUser.setType(Integer.parseInt(request.getParameter("user_type")));
+            mUser.setName(request.getParameter("name"));
+            mUser.setNic(request.getParameter("nic"));
+            mUser.setAddress(request.getParameter("address"));
+            mUser.setEmail(request.getParameter("email"));
+            mUser.setMobile(request.getParameter("mobile"));
+            mUser.setIs_verified(1);
+            mUser.setPassword(Util.toSHA256(request.getParameter("password")));
+            mUser.setVerification_code("0000");
 
             //API call
-            String url = Config.API_URL_BASE + "user";
-            Map<String, Object> requestBody = Map.of(
-                    "type", type,
-                    "name", name,
-                    "nic", nic,
-                    "address", address,
-                    "email", email,
-                    "mobile", mobile,
-                    "verification_code", "0000",
-                    "is_verified", 1,
-                    "password", Util.toSHA256(password)
-            );
-            String apiResponse = ApiClient.post(url, requestBody);
-            User user = new Gson().fromJson(apiResponse, User.class);
+            User user = UserAPIController.createUser(mUser);
 
             //redirect
             if (user.getType() == UserType.CUSTOMER.getValue()){

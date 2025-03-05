@@ -1,4 +1,6 @@
-package com.arvin.megacitycab.dao;
+package com.arvin.megacitycab.dao.impl;
+
+import com.arvin.megacitycab.dao.*;
 
 public class DaoFactory {
 
@@ -17,7 +19,7 @@ public class DaoFactory {
         return new BookingDaoImpl();
     }
 
-    public static PaymentDao paymentDao(){
+    public static PaymentDao paymentDao() {
         return new PaymentDaoImpl();
     }
 }

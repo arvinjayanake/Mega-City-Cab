@@ -1,7 +1,7 @@
 package com.arvin.megacitycab.api;
 
 import com.arvin.megacitycab.api.error.ApiError;
-import com.arvin.megacitycab.dao.DaoFactory;
+import com.arvin.megacitycab.dao.impl.DaoFactory;
 import com.arvin.megacitycab.dao.PaymentDao;
 import com.arvin.megacitycab.model.Payment;
 import com.google.gson.Gson;

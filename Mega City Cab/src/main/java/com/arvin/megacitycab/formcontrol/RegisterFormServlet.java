@@ -1,10 +1,12 @@
 package com.arvin.megacitycab.formcontrol;
 
+import com.arvin.megacitycab.apiclient.UserAPIController;
 import com.arvin.megacitycab.config.Config;
-import com.arvin.megacitycab.dao.DaoFactory;
+import com.arvin.megacitycab.dao.impl.DaoFactory;
 import com.arvin.megacitycab.dao.UserDao;
+import com.arvin.megacitycab.model.Customer;
 import com.arvin.megacitycab.model.base.User;
-import com.arvin.megacitycab.util.ApiClient;
+import com.arvin.megacitycab.apiclient.ApiClient;
 import com.arvin.megacitycab.util.Util;
 import com.google.gson.Gson;
 import jakarta.servlet.RequestDispatcher;
@@ -32,11 +34,6 @@ public class RegisterFormServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         try {
             //Data
-            String name = request.getParameter("name");
-            String nic = request.getParameter("nic");
-            String email = request.getParameter("email");
-            String address = request.getParameter("address");
-            String mobile = request.getParameter("mobile");
             String password = request.getParameter("password");
             String confirmPassword = request.getParameter("confirm-password");
 
@@ -48,22 +45,17 @@ public class RegisterFormServlet extends HttpServlet {
                 return;
             }
 
+            Customer mUser = new Customer();
+            mUser.setName(request.getParameter("name"));
+            mUser.setNic(request.getParameter("nic"));
+            mUser.setAddress(request.getParameter("address"));
+            mUser.setEmail(request.getParameter("email"));
+            mUser.setMobile(request.getParameter("mobile"));
+            mUser.setPassword(Util.toSHA256(password));
+            mUser.setVerification_code(Util.generateOTP());
 
-            //API call
-            String otp = Util.generateOTP();
-
-            String url = Config.API_URL_BASE + "user";
-            Map<String, Object> requestBody = Map.of(
-                    "name", name,
-                    "nic", nic,
-                    "email", email,
-                    "address", address,
-                    "verification_code", otp,
-                    "mobile", mobile,
-                    "password", Util.toSHA256(password)
-            );
-            String apiResponse = ApiClient.post(url, requestBody);
-            User user = new Gson().fromJson(apiResponse, User.class);
+            //Api call
+            User user = UserAPIController.createUser(mUser);
 
             //Set data to session
             HttpSession session = request.getSession(true);
@@ -79,13 +71,6 @@ public class RegisterFormServlet extends HttpServlet {
             } catch (Exception e2) {
                 e2.printStackTrace();
             }
-
-//            request.setAttribute("error", "Invalid username or password, please try again.");
-//            try {
-//                response.sendRedirect("login");
-//            } catch (Exception e2) {
-//                e2.printStackTrace();
-//            }
         }
     }
 }

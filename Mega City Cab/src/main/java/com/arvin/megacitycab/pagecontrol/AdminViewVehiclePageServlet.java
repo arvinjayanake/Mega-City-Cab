@@ -1,10 +1,10 @@
 package com.arvin.megacitycab.pagecontrol;
 
 
+import com.arvin.megacitycab.apiclient.VehicleAPIController;
 import com.arvin.megacitycab.config.Config;
 import com.arvin.megacitycab.model.Vehicle;
-import com.arvin.megacitycab.model.base.User;
-import com.arvin.megacitycab.util.ApiClient;
+import com.arvin.megacitycab.apiclient.ApiClient;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import jakarta.servlet.RequestDispatcher;
@@ -25,10 +25,7 @@ public class AdminViewVehiclePageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             //Api call
-            String url = Config.API_URL_BASE + "vehicles";
-            String apiResponse = ApiClient.get(url);
-            Type vehicleListType = new TypeToken<List<Vehicle>>() {}.getType();
-            List<Vehicle> vehicles = new Gson().fromJson(apiResponse, vehicleListType);
+            List<Vehicle> vehicles = VehicleAPIController.getAllVehicles();
 
             //search
             String searchTxt = request.getParameter("search");

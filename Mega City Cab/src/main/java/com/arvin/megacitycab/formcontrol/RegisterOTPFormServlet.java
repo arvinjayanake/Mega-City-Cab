@@ -1,10 +1,11 @@
 package com.arvin.megacitycab.formcontrol;
 
+import com.arvin.megacitycab.apiclient.UserAPIController;
 import com.arvin.megacitycab.config.Config;
-import com.arvin.megacitycab.dao.DaoFactory;
+import com.arvin.megacitycab.dao.impl.DaoFactory;
 import com.arvin.megacitycab.dao.UserDao;
 import com.arvin.megacitycab.model.base.User;
-import com.arvin.megacitycab.util.ApiClient;
+import com.arvin.megacitycab.apiclient.ApiClient;
 import com.google.gson.Gson;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -31,17 +32,11 @@ public class RegisterOTPFormServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         try {
             //Data
-            String user_id = request.getParameter("user_id");
+            int user_id = Integer.parseInt(request.getParameter("user_id"));
             String otp = request.getParameter("otp");
 
             //API call
-            String url = Config.API_URL_BASE + "user/otp/verify";
-            Map<String, Object> requestBody = Map.of(
-                    "id", user_id,
-                    "otp", otp
-            );
-            String apiResponse = ApiClient.post(url, requestBody);
-            User user = new Gson().fromJson(apiResponse, User.class);
+            User user = UserAPIController.userOtpVerify(user_id, otp);
 
             if (user != null){
                 //Set data to session

@@ -1,4 +1,4 @@
-package com.arvin.megacitycab.util;
+package com.arvin.megacitycab.apiclient;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;

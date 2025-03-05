@@ -22,7 +22,7 @@
 <body>
 <div class="container">
 
-    <jsp:include page="admin/admin-side-bar.jsp" />
+    <jsp:include page="admin-side-bar.jsp" />
 
     <div class="content">
         <!-- Content Card-->
