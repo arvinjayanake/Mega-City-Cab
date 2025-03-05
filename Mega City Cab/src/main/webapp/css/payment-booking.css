@@ -3,7 +3,7 @@ body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
+    background-color: #f8f9fa;
     color: #1A2A3A;
 }
 
@@ -38,8 +38,13 @@ nav .nav-links a:hover {
     color: #FFD700;
 }
 
-/* Booking Container */
-.booking-container {
+nav .nav-links a.active {
+    color: #FFD700;
+    font-weight: 600;
+}
+
+/* Payment Booking Container */
+.payment-booking-container {
     max-width: 600px;
     margin: 2rem auto;
     padding: 2rem;
@@ -48,47 +53,105 @@ nav .nav-links a:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.booking-container h1 {
-    text-align: center;
-    margin-bottom: 1.5rem;
+.payment-booking-container h1 {
     color: #1A2A3A;
+    margin-bottom: 1.5rem;
+    text-align: center;
 }
 
-.booking-container form {
+/* Booking Summary */
+.booking-summary {
+    margin-bottom: 2rem;
+}
+
+.booking-summary h2 {
+    color: #1A2A3A;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.summary-item {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+.summary-item.total {
+    border-top: 1px solid #e9ecef;
+    padding-top: 0.75rem;
+    font-weight: 600;
+}
+
+.summary-label {
+    color: #1A2A3A;
+    font-weight: 500;
+}
+
+.summary-value {
+    color: #666;
+}
+
+/* Card Information Form */
+.card-information {
+    margin-top: 2rem;
+}
+
+.card-information h2 {
+    color: #1A2A3A;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.form-group input:focus {
+    border-color: #FFD700;
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+.form-group-row {
+    display: flex;
     gap: 1rem;
 }
 
-.booking-container .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+.form-group-row .form-group {
+    flex: 1;
 }
 
-.booking-container label {
-    font-weight: 600;
-}
-
-.booking-container input,
-.booking-container select {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-.booking-container button {
-    padding: 0.75rem;
+/* Pay Now Button */
+button {
+    width: 100%;
+    padding: 12px;
     background-color: #FFD700;
     border: none;
     border-radius: 5px;
-    font-size: 1rem;
-    font-weight: 600;
+    color: #1A2A3A;
+    font-size: 16px;
+    font-weight: 500;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.booking-container button:hover {
+button:hover {
     background-color: #e6b800;
 }
 
@@ -127,24 +190,4 @@ footer .social-media a {
 
 footer .social-media a:hover {
     color: #FFD700;
-}
-
-/* Vehicle Information Section */
-.vehicle-info {
-    margin-top: 10px;
-    padding: 15px;
-    background-color: #f8f9fa;
-    border: 1px solid #e9ecef;
-    border-radius: 5px;
-}
-
-.vehicle-info p {
-    margin: 5px 0;
-    color: #1A2A3A;
-    font-size: 14px;
-}
-
-.vehicle-info strong {
-    color: #1A2A3A;
-    font-weight: 600;
 }

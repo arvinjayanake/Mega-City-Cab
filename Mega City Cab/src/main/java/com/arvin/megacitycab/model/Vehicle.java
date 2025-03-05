@@ -113,6 +113,10 @@ public class Vehicle {
         this.updated_at = updated_at;
     }
 
+    public String fullNameWithYear(){
+        return  (getMake() != null ? getMake() : "-") + " " + (getModel() != null ? getModel() : "-") + " " + getYear();
+    }
+
     @Override
     public String toString() {
         return "Vehicle{" +

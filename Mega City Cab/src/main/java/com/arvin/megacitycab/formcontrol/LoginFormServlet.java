@@ -47,13 +47,13 @@ public class LoginFormServlet extends HttpServlet {
             session.setAttribute("user", user);
 
 
-            if (user.getType() == UserType.ADMIN.getValue()){
+            if (user.getType() == UserType.CUSTOMER.getValue()){
+                response.sendRedirect("book-a-taxi");
+            } else if (user.getType() == UserType.ADMIN.getValue()){
                 response.sendRedirect("admin-view-customers");
             } else {
                 response.sendRedirect("home");
             }
-
-
         } catch (Exception e1) {
             e1.printStackTrace();
             try {

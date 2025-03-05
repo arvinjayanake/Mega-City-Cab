@@ -22,7 +22,7 @@
 <body>
 <div class="container">
 
-    <jsp:include page="admin-side-bar.jsp" />
+    <jsp:include page="admin/admin-side-bar.jsp" />
 
     <div class="content">
         <!-- Content Card-->
@@ -42,14 +42,12 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>Make</th>
-                        <th>Model</th>
+                        <th>Vehicle</th>
                         <th>Category</th>
-                        <th>Year</th>
                         <th>Reg. No</th>
-                        <th>Passenger Capacity</th>
-                        <th>Luggage Capacity</th>
-                        <th>Price Per KM</th>
+                        <th>Passenger<br>Capacity</th>
+                        <th>Luggage<br>Capacity</th>
+                        <th>Price<br>Per KM</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -61,10 +59,8 @@
                             for (Vehicle vehicle : vehicles) {
                     %>
                     <tr>
-                        <td class="cell-content"><%= vehicle.getMake() != null ? vehicle.getMake() : "-" %></td>
-                        <td class="cell-content"><%= vehicle.getModel() != null ? vehicle.getModel() : "-" %></td>
+                        <td class="cell-content"><%= vehicle.fullNameWithYear() %></td>
                         <td class="cell-content"><%= VehicleCategory.fromInt(vehicle.getCategory()) %></td>
-                        <td class="cell-content"><%= vehicle.getYear() %></td>
                         <td class="cell-content"><%= vehicle.getRegistration_number() != null ? vehicle.getRegistration_number() : "-" %></td>
                         <td class="cell-content"><%= vehicle.getPassenger_capacity() %></td>
                         <td class="cell-content"><%= vehicle.getLuggage_capacity() != null ? vehicle.getLuggage_capacity() : "-" %></td>

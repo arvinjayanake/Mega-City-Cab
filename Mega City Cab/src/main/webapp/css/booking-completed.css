@@ -3,7 +3,7 @@ body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
+    background-color: #f8f9fa;
     color: #1A2A3A;
 }
 
@@ -38,57 +38,61 @@ nav .nav-links a:hover {
     color: #FFD700;
 }
 
-/* Booking Container */
-.booking-container {
+nav .nav-links a.active {
+    color: #FFD700;
+    font-weight: 600;
+}
+
+/* Booking Completed Container */
+.booking-completed-container {
     max-width: 600px;
     margin: 2rem auto;
     padding: 2rem;
     background-color: #FFFFFF;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
-.booking-container h1 {
-    text-align: center;
+.booking-completed-container h1 {
+    color: #1A2A3A;
     margin-bottom: 1.5rem;
+}
+
+/* Booking Details */
+.booking-details {
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.detail-item {
+    margin-bottom: 1rem;
+}
+
+.detail-label {
+    font-weight: 500;
     color: #1A2A3A;
 }
 
-.booking-container form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+.detail-value {
+    color: #666;
+    margin-left: 0.5rem;
 }
 
-.booking-container .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.booking-container label {
-    font-weight: 600;
-}
-
-.booking-container input,
-.booking-container select {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-.booking-container button {
-    padding: 0.75rem;
+/* Button */
+button {
+    padding: 12px 24px;
     background-color: #FFD700;
     border: none;
     border-radius: 5px;
-    font-size: 1rem;
-    font-weight: 600;
+    color: #1A2A3A;
+    font-size: 16px;
+    font-weight: 500;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.booking-container button:hover {
+button:hover {
     background-color: #e6b800;
 }
 
@@ -127,24 +131,4 @@ footer .social-media a {
 
 footer .social-media a:hover {
     color: #FFD700;
-}
-
-/* Vehicle Information Section */
-.vehicle-info {
-    margin-top: 10px;
-    padding: 15px;
-    background-color: #f8f9fa;
-    border: 1px solid #e9ecef;
-    border-radius: 5px;
-}
-
-.vehicle-info p {
-    margin: 5px 0;
-    color: #1A2A3A;
-    font-size: 14px;
-}
-
-.vehicle-info strong {
-    color: #1A2A3A;
-    font-weight: 600;
 }

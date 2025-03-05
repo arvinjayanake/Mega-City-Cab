@@ -16,11 +16,11 @@
         <form action="form-login" method="post">
             <div class="input-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" value="thison@gmail.com" required>
             </div>
             <div class="input-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" value="ttttt" required>
             </div>
 
             <%

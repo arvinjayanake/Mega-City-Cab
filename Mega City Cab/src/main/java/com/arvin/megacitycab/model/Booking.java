@@ -1,21 +1,23 @@
 package com.arvin.megacitycab.model;
 
 import com.arvin.megacitycab.model.enums.BookingStatus;
+import com.arvin.megacitycab.model.enums.PaymentMethod;
 
 public class Booking {
 
     private int id;
-    private int customerId;
-    private int vehicleId;
-    private int driverId;
-    private String pickupLocation;
-    private String pickupDatetime;
-    private String dropOffLocation;
-    private Double totalDistance;
-    private Double totalPrice;
+    private int customer_id;
+    private int vehicle_id;
+    private int driver_id = -1;
+    private String pickup_location;
+    private String pickup_datetime;
+    private String dropoff_location;
+    private Double total_distance;
+    private Double total_price;
     private int status;
-    private String createdAt;
-    private String updatedAt;
+    private String created_at;
+    private String updated_at;
+    private int payment_method = PaymentMethod.CASH.getValue();
 
     public int getId() {
         return id;
@@ -25,68 +27,68 @@ public class Booking {
         this.id = id;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public int getCustomer_id() {
+        return customer_id;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setCustomer_id(int customer_id) {
+        this.customer_id = customer_id;
     }
 
-    public int getVehicleId() {
-        return vehicleId;
+    public int getVehicle_id() {
+        return vehicle_id;
     }
 
-    public void setVehicleId(int vehicleId) {
-        this.vehicleId = vehicleId;
+    public void setVehicle_id(int vehicle_id) {
+        this.vehicle_id = vehicle_id;
     }
 
-    public int getDriverId() {
-        return driverId;
+    public int getDriver_id() {
+        return driver_id;
     }
 
-    public void setDriverId(int driverId) {
-        this.driverId = driverId;
+    public void setDriver_id(int driver_id) {
+        this.driver_id = driver_id;
     }
 
-    public String getPickupLocation() {
-        return pickupLocation;
+    public String getPickup_location() {
+        return pickup_location;
     }
 
-    public void setPickupLocation(String pickupLocation) {
-        this.pickupLocation = pickupLocation;
+    public void setPickup_location(String pickup_location) {
+        this.pickup_location = pickup_location;
     }
 
-    public String getPickupDatetime() {
-        return pickupDatetime;
+    public String getPickup_datetime() {
+        return pickup_datetime;
     }
 
-    public void setPickupDatetime(String pickupDatetime) {
-        this.pickupDatetime = pickupDatetime;
+    public void setPickup_datetime(String pickup_datetime) {
+        this.pickup_datetime = pickup_datetime;
     }
 
-    public String getDropOffLocation() {
-        return dropOffLocation;
+    public String getDropoff_location() {
+        return dropoff_location;
     }
 
-    public void setDropOffLocation(String dropOffLocation) {
-        this.dropOffLocation = dropOffLocation;
+    public void setDropoff_location(String dropoff_location) {
+        this.dropoff_location = dropoff_location;
     }
 
-    public Double getTotalDistance() {
-        return totalDistance;
+    public Double getTotal_distance() {
+        return total_distance;
     }
 
-    public void setTotalDistance(Double totalDistance) {
-        this.totalDistance = totalDistance;
+    public void setTotal_distance(Double total_distance) {
+        this.total_distance = total_distance;
     }
 
-    public Double getTotalPrice() {
-        return totalPrice;
+    public Double getTotal_price() {
+        return total_price;
     }
 
-    public void setTotalPrice(Double totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setTotal_price(Double total_price) {
+        this.total_price = total_price;
     }
 
     public int getStatus() {
@@ -97,19 +99,27 @@ public class Booking {
         this.status = status;
     }
 
-    public String getCreatedAt() {
-        return createdAt;
+    public String getCreated_at() {
+        return created_at;
     }
 
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
     }
 
-    public String getUpdatedAt() {
-        return updatedAt;
+    public String getUpdated_at() {
+        return updated_at;
     }
 
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setUpdated_at(String updated_at) {
+        this.updated_at = updated_at;
+    }
+
+    public int getPayment_method() {
+        return payment_method;
+    }
+
+    public void setPayment_method(int payment_method) {
+        this.payment_method = payment_method;
     }
 }
