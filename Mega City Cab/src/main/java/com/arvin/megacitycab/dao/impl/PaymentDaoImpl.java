@@ -70,6 +70,30 @@ class PaymentDaoImpl extends BaseDao implements PaymentDao {
     }
 
     @Override
+    public Payment getPaymentByBookingId(int bookingId) throws SQLException {
+        Payment payment = null;
+        String sql = "SELECT * FROM payment WHERE booking_id = ?";
+        Connection conn = null;
+
+        try {
+            conn = DatabaseConnectionPool.getInstance().getConnection();
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setInt(1, bookingId);
+                try (ResultSet rs = stmt.executeQuery()) {
+                    if (rs.next()) {
+                        payment = resultSetToPayment(rs);
+                    }
+                }
+            }
+        } finally {
+            if (conn != null) {
+                DatabaseConnectionPool.getInstance().releaseConnection(conn);
+            }
+        }
+        return payment;
+    }
+
+    @Override
     public List<Payment> getAllPayments() throws SQLException {
         List<Payment> payments = new ArrayList<>();
         String sql = "SELECT * FROM payment ORDER BY id DESC";

@@ -122,4 +122,9 @@ public class Booking {
     public void setPayment_method(int payment_method) {
         this.payment_method = payment_method;
     }
+
+    @Override
+    public String toString() {
+        return "#" + id + "|" + pickup_location + "|" + pickup_datetime + "|" + dropoff_location + "|" + total_distance + "km|" + total_price;
+    }
 }

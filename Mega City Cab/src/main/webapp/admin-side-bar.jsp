@@ -54,6 +54,16 @@
         <% } %>
     </ul>
 
+    <div style="margin-top: 16px; font-size: 12px; font-weight: bold; color: #2196f3">Manage Bookings</div>
+    <ul style="margin-top: 8px;">
+        <%-- Bookings --%>
+        <% if (currentPage.contains("admin-view-bookings.jsp")) { %>
+        <li>Bookings</li>
+        <% } else { %>
+        <li><a href="admin-view-bookings">Bookings</a></li>
+        <% } %>
+    </ul>
+
     <div style="margin-top: 16px; font-size: 12px; font-weight: bold; color: #2196f3">Other Controls:</div>
     <ul style="margin-top: 8px;">
         <li><a href="form-logout">Logout</a></li>

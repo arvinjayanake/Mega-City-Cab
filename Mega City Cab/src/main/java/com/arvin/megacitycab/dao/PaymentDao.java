@@ -10,6 +10,7 @@ public interface PaymentDao {
     Payment addPayment(Payment payment) throws SQLException;
 
     Payment getPaymentById(int id) throws SQLException;
+    Payment getPaymentByBookingId(int bookingId) throws SQLException;
 
     List<Payment> getAllPayments() throws SQLException;
 

@@ -2,13 +2,40 @@ package com.arvin.megacitycab.apiclient;
 
 import com.arvin.megacitycab.config.Config;
 import com.arvin.megacitycab.model.Payment;
+import com.arvin.megacitycab.model.base.User;
 import com.arvin.megacitycab.model.enums.PaymentType;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class PaymentAPIController {
+
+    public static Payment getPaymentByBookingId(int bookingId) throws IOException {
+        String url = Config.API_URL_BASE + "payments";
+        String apiResponse = ApiClient.get(url);
+        Gson gson = new Gson();
+        Type userListType = new TypeToken<List<User>>() {
+        }.getType();
+        List<Payment> payments = gson.fromJson(apiResponse, userListType);
+        for (Payment p : payments) {
+            if (p.getBooking_id() == bookingId) {
+                return p;
+            }
+        }
+
+        return null;
+    }
+
+    public static Payment getPaymentById(int id) throws IOException {
+        String url = Config.API_URL_BASE + "payment?id=" + id;
+        String apiResponse = ApiClient.get(url);
+        return new Gson().fromJson(apiResponse, Payment.class);
+    }
 
     public static Payment createPayment(Payment payment) throws IOException {
         String url = Config.API_URL_BASE + "payment";
