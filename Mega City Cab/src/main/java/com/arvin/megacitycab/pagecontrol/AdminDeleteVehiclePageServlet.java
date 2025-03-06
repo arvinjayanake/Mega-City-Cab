@@ -16,20 +16,22 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/admin-delete-vehicle")
-public class AdminDeleteVehiclePageServlet extends HttpServlet {
+public class AdminDeleteVehiclePageServlet extends BasePageServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            //get data
-            int vehicleId = Integer.parseInt(request.getParameter("id"));
+            if (isAdmin(request, response)){
+                //get data
+                int vehicleId = Integer.parseInt(request.getParameter("id"));
 
-            //api call
-            Vehicle vehicle = VehicleAPIController.getVehicleById(vehicleId);
+                //api call
+                Vehicle vehicle = VehicleAPIController.getVehicleById(vehicleId);
 
-            //set data to jsp
-            request.setAttribute("vehicle", vehicle);
-            request.getRequestDispatcher("admin-delete-vehicle.jsp").forward(request, response);
+                //set data to jsp
+                request.setAttribute("vehicle", vehicle);
+                request.getRequestDispatcher("admin-delete-vehicle.jsp").forward(request, response);
+            }
         } catch (Exception e1) {
             e1.printStackTrace();
             try {

@@ -21,32 +21,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/admin-view-admins")
-public class AdminViewAdminPageServlet extends HttpServlet {
+public class AdminViewAdminPageServlet extends BasePageServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession(true);
-        Object userObj = session.getAttribute("user");
-
         try {
-            //Api call
-            List<User> users = UserAPIController.getAllAdmins();
+            if (isAdmin(request, response)) {
+                //Api call
+                List<User> users = UserAPIController.getAllAdmins();
 
-            String searchTxt = request.getParameter("search");
-            if (searchTxt != null){
-                List<User> newUsers = new ArrayList<>();
-                for (User u : users) {
-                    if (u.toString().toLowerCase().contains(searchTxt.toLowerCase())){
-                        newUsers.add(u);
-                    }
-                };
+                String searchTxt = request.getParameter("search");
+                if (searchTxt != null){
+                    List<User> newUsers = new ArrayList<>();
+                    for (User u : users) {
+                        if (u.toString().toLowerCase().contains(searchTxt.toLowerCase())){
+                            newUsers.add(u);
+                        }
+                    };
 
-                users = newUsers;
+                    users = newUsers;
+                }
+
+                request.setAttribute("users", users);
+                request.getRequestDispatcher("admin-view-admins.jsp").forward(request, response);
             }
-
-            request.setAttribute("users", users);
-            request.getRequestDispatcher("admin-view-admins.jsp").forward(request, response);
-
         } catch (Exception e1) {
             e1.printStackTrace();
             try {

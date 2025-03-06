@@ -1,4 +1,5 @@
 <%@ page import="com.arvin.megacitycab.model.base.User" %>
+<%@ page import="com.arvin.megacitycab.model.enums.UserType" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% User user = (User) session.getAttribute("user"); %>
 <!DOCTYPE html>
@@ -23,6 +24,11 @@
             <input type="hidden" name="id" value="<%= user.getId() %>">
 
             <!-- Read-Only Fields -->
+            <div class="form-group">
+                <label for="user_type">User Type</label>
+                <input type="text" id="user_type" value="<%= UserType.fromInt(user.getType()).toString() %>" disabled>
+            </div>
+
             <div class="form-group">
                 <label for="name">Full Name</label>
                 <input type="text" id="name" value="<%= user.getName() %>" disabled>

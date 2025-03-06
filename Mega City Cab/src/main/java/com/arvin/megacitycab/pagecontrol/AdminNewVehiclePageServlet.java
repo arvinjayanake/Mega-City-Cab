@@ -10,9 +10,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/admin-new-vehicle")
-public class AdminNewVehiclePageServlet extends HttpServlet {
+public class AdminNewVehiclePageServlet extends BasePageServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("admin-new-vehicle.jsp").forward(request, response);
+        if (isAdmin(request, response)) {
+            request.getRequestDispatcher("admin-new-vehicle.jsp").forward(request, response);
+        }
     }
 }

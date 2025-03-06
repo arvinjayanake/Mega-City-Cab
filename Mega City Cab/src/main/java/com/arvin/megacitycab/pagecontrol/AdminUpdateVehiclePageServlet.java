@@ -16,17 +16,19 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/admin-update-vehicle")
-public class AdminUpdateVehiclePageServlet extends HttpServlet {
+public class AdminUpdateVehiclePageServlet extends BasePageServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            //get data
-            int vehicleId = Integer.parseInt(request.getParameter("id"));
-            Vehicle vehicle = VehicleAPIController.getVehicleById(vehicleId);
+            if (isAdmin(request, response)) {
+                //get data
+                int vehicleId = Integer.parseInt(request.getParameter("id"));
+                Vehicle vehicle = VehicleAPIController.getVehicleById(vehicleId);
 
-            request.setAttribute("vehicle", vehicle);
-            request.getRequestDispatcher("admin-update-vehicle.jsp").forward(request, response);
+                request.setAttribute("vehicle", vehicle);
+                request.getRequestDispatcher("admin-update-vehicle.jsp").forward(request, response);
+            }
         } catch (Exception e1) {
             e1.printStackTrace();
             try {

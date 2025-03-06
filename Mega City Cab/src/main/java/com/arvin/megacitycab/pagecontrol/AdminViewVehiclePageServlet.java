@@ -20,29 +20,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/admin-view-vehicles")
-public class AdminViewVehiclePageServlet extends HttpServlet {
+public class AdminViewVehiclePageServlet extends BasePageServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            //Api call
-            List<Vehicle> vehicles = VehicleAPIController.getAllVehicles();
+            if (isAdmin(request, response)) {
+                //Api call
+                List<Vehicle> vehicles = VehicleAPIController.getAllVehicles();
 
-            //search
-            String searchTxt = request.getParameter("search");
-            if (searchTxt != null){
-                List<Vehicle> newVehicles = new ArrayList<>();
-                for (Vehicle v : vehicles) {
-                    if (v.toString().toLowerCase().contains(searchTxt.toLowerCase())){
-                        newVehicles.add(v);
+                //search
+                String searchTxt = request.getParameter("search");
+                if (searchTxt != null) {
+                    List<Vehicle> newVehicles = new ArrayList<>();
+                    for (Vehicle v : vehicles) {
+                        if (v.toString().toLowerCase().contains(searchTxt.toLowerCase())) {
+                            newVehicles.add(v);
+                        }
                     }
-                };
+                    ;
 
-                vehicles = newVehicles;
+                    vehicles = newVehicles;
+                }
+
+                //set data
+                request.setAttribute("vehicles", vehicles);
+                request.getRequestDispatcher("admin-view-vehicles.jsp").forward(request, response);
             }
-
-            //set data
-            request.setAttribute("vehicles", vehicles);
-            request.getRequestDispatcher("admin-view-vehicles.jsp").forward(request, response);
         } catch (Exception e1) {
             e1.printStackTrace();
             try {
