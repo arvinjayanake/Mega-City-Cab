@@ -158,9 +158,4 @@ public class UserAPIServlet extends HttpServlet {
         out.flush();
     }
 
-    private boolean isValidUserType(int type) {
-        return type == UserType.CUSTOMER.getValue() || type == UserType.DRIVER.getValue()
-                || type == UserType.ADMIN.getValue();
-    }
-
 }

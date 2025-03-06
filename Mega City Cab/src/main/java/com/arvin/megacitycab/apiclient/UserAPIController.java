@@ -8,6 +8,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,7 +34,8 @@ public class UserAPIController {
         String url = Config.API_URL_BASE + "users?type=3";
         String apiResponse = ApiClient.get(url);
         Gson gson = new Gson();
-        Type userListType = new TypeToken<List<User>>() {}.getType();
+        Type userListType = new TypeToken<List<User>>() {
+        }.getType();
         return gson.fromJson(apiResponse, userListType);
     }
 
@@ -41,7 +43,8 @@ public class UserAPIController {
         String url = Config.API_URL_BASE + "users?type=2";
         String apiResponse = ApiClient.get(url);
         Gson gson = new Gson();
-        Type userListType = new TypeToken<List<User>>() {}.getType();
+        Type userListType = new TypeToken<List<User>>() {
+        }.getType();
         return gson.fromJson(apiResponse, userListType);
     }
 
@@ -49,25 +52,46 @@ public class UserAPIController {
         String url = Config.API_URL_BASE + "users?type=1";
         String apiResponse = ApiClient.get(url);
         Gson gson = new Gson();
-        Type userListType = new TypeToken<List<User>>() {}.getType();
+        Type userListType = new TypeToken<List<User>>() {
+        }.getType();
         return gson.fromJson(apiResponse, userListType);
+    }
+
+    private static boolean notNull(String value) {
+        return value != null && !value.isEmpty();
     }
 
     public static User updateUser(User user) throws IOException {
         String url = Config.API_URL_BASE + "user";
-        Map<String, Object> requestBody = new java.util.HashMap<>(Map.of(
+        Map<String, Object> requestBody = new HashMap<>(Map.of(
                 "id", user.getId(),
-                "name", user.getName(),
-                "nic", user.getNic(),
-                "address", user.getAddress(),
-                "email", user.getEmail(),
-                "mobile", user.getMobile(),
                 "is_verified", user.getIs_verified()
         ));
 
-        if (user.getPassword() != null && !user.getPassword().isEmpty()) {
+        if (notNull(user.getName())) {
+            requestBody.put("name", user.getName());
+        }
+
+        if (notNull(user.getNic())) {
+            requestBody.put("nic", user.getNic());
+        }
+
+        if (notNull(user.getEmail())) {
+            requestBody.put("email", user.getEmail());
+        }
+
+        if (notNull(user.getAddress())) {
+            requestBody.put("address", user.getAddress());
+        }
+
+        if (notNull(user.getMobile())) {
+            requestBody.put("mobile", user.getMobile());
+        }
+
+        if (notNull(user.getPassword())) {
             requestBody.put("password", Util.toSHA256(user.getPassword()));
         }
+
 
         String apiResponse = ApiClient.put(url, requestBody);
         return new Gson().fromJson(apiResponse, User.class);
@@ -75,7 +99,7 @@ public class UserAPIController {
 
     public static User createUser(User user) throws IOException {
         String url = Config.API_URL_BASE + "user";
-        Map<String, Object> requestBody = new java.util.HashMap<>(Map.of(
+        Map<String, Object> requestBody = Map.of(
                 "name", user.getName(),
                 "nic", user.getNic(),
                 "email", user.getEmail(),
@@ -84,8 +108,8 @@ public class UserAPIController {
                 "verification_code", user.getVerification_code(),
                 "is_verified", user.getIs_verified(),
                 "type", user.getType(),
-                "password", user.getPassword()
-        ));
+                "password", (user.getPassword() == null || user.getPassword().isEmpty()) ? null : Util.toSHA256(user.getPassword())
+        );
 
         String apiResponse = ApiClient.post(url, requestBody);
         return new Gson().fromJson(apiResponse, User.class);

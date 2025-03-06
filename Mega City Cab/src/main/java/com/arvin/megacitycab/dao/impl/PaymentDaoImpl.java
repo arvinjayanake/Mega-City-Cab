@@ -16,17 +16,16 @@ class PaymentDaoImpl extends BaseDao implements PaymentDao {
 
     @Override
     public Payment addPayment(Payment payment) throws SQLException {
-        String sql = "INSERT INTO payment (booking_id, payment_date, card_no, amount, type) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO payment (booking_id, card_no, amount, type) VALUES (?, ?, ?, ?)";
         Connection conn = null;
 
         try {
             conn = DatabaseConnectionPool.getInstance().getConnection();
             try (PreparedStatement stmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
                 stmt.setInt(1, payment.getBooking_id());
-                stmt.setString(2, payment.getPayment_date());
-                stmt.setString(3, payment.getCard_no());
-                stmt.setDouble(4, payment.getAmount());
-                stmt.setInt(5, payment.getType());
+                stmt.setString(2, payment.getCard_no());
+                stmt.setDouble(3, payment.getAmount());
+                stmt.setInt(4, payment.getType());
                 int rowsAffected = stmt.executeUpdate();
 
                 if (rowsAffected > 0) {
