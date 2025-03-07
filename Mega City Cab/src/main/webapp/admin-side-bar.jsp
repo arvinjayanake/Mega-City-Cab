@@ -54,13 +54,20 @@
         <% } %>
     </ul>
 
-    <div style="margin-top: 16px; font-size: 12px; font-weight: bold; color: #2196f3">Manage Bookings</div>
+    <div style="margin-top: 16px; font-size: 12px; font-weight: bold; color: #2196f3">Bookings and Payments</div>
     <ul style="margin-top: 8px;">
         <%-- Bookings --%>
         <% if (currentPage.contains("admin-view-bookings.jsp")) { %>
         <li>Bookings</li>
         <% } else { %>
         <li><a href="admin-view-bookings">Bookings</a></li>
+        <% } %>
+
+        <%-- Payments --%>
+        <% if (currentPage.contains("admin-view-payments.jsp")) { %>
+        <li>Payments</li>
+        <% } else { %>
+        <li><a href="admin-view-payments">Payments</a></li>
         <% } %>
     </ul>
 

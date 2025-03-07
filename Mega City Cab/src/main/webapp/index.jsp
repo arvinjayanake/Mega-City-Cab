@@ -1,4 +1,13 @@
+<%@ page import="com.arvin.megacitycab.model.base.User" %>
+<%@ page import="com.arvin.megacitycab.model.enums.UserType" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    User loggedUser = null;
+    if (session.getAttribute("user") instanceof User) {
+        loggedUser = (User) session.getAttribute("user");
+    }
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +22,15 @@
 <nav>
     <div class="logo">Mega City Cab</div>
     <ul class="nav-links">
+        <% if (loggedUser == null) {%>
         <li><a href="login" class="login-button">Login</a></li>
+        <% } else { %>
+            <% if (loggedUser.getType() == UserType.ADMIN.getValue()) {%>
+                <li><a href="admin-view-customers" class="login-button">Admin Dashboard</a></li>
+            <% } else  if (loggedUser.getType() == UserType.CUSTOMER.getValue()) {%>
+                <li><a href="book-a-taxi" class="login-button">Book a Taxi</a></li>
+            <% } %>
+        <% } %>
     </ul>
 </nav>
 
@@ -51,7 +68,9 @@
 <!-- About Section -->
 <section id="about" class="about">
     <h2>About Mega City Cab</h2>
-    <p>Mega City Cab is your trusted partner for all your transportation needs. Whether you're commuting to work, heading to the airport, or exploring the city, we provide a seamless and enjoyable ride experience. Our mission is to make your journey safe, comfortable, and hassle-free.</p>
+    <p>Mega City Cab is your trusted partner for all your transportation needs. Whether you're commuting to work,
+        heading to the airport, or exploring the city, we provide a seamless and enjoyable ride experience. Our mission
+        is to make your journey safe, comfortable, and hassle-free.</p>
 </section>
 
 <!-- Footer -->

@@ -58,4 +58,16 @@ public class Payment {
     public void setType(int type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "id=" + id +
+                ", booking_id=#" + booking_id +
+                ", payment_date='" + payment_date + '\'' +
+                ", card_no='" + card_no + '\'' +
+                ", amount=" + amount +
+                ", type=" + PaymentType.fromInt(type) +
+                '}';
+    }
 }

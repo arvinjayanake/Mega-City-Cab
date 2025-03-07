@@ -96,7 +96,7 @@ class PaymentDaoImpl extends BaseDao implements PaymentDao {
     @Override
     public List<Payment> getAllPayments() throws SQLException {
         List<Payment> payments = new ArrayList<>();
-        String sql = "SELECT * FROM payment ORDER BY id DESC";
+        String sql = "SELECT * FROM payment ORDER BY booking_id DESC";
         Connection conn = null;
 
         try {
