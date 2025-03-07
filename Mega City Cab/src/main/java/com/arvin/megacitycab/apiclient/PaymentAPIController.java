@@ -2,6 +2,7 @@ package com.arvin.megacitycab.apiclient;
 
 import com.arvin.megacitycab.config.Config;
 import com.arvin.megacitycab.model.Payment;
+import com.arvin.megacitycab.model.enums.PaymentType;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -12,19 +13,32 @@ import java.util.Map;
 
 public class PaymentAPIController {
 
-    public static Payment getPaymentByBookingId(int bookingId) throws IOException {
+    public static List<Payment> getAllPayments() throws IOException {
         String url = Config.API_URL_BASE + "payments";
         String apiResponse = ApiClient.get(url);
         Gson gson = new Gson();
         Type paymentListType = new TypeToken<List<Payment>>() {
         }.getType();
-        List<Payment> payments = gson.fromJson(apiResponse, paymentListType);
+        return gson.fromJson(apiResponse, paymentListType);
+    }
+
+    public static Payment getBookingPayment(int bookingId) throws IOException {
+        List<Payment> payments = getAllPayments();
         for (Payment p : payments) {
-            if (p.getBooking_id() == bookingId) {
+            if (p.getBooking_id() == bookingId && p.getType() == PaymentType.PAYMENT.getValue()) {
                 return p;
             }
         }
+        return null;
+    }
 
+    public static Payment getBookingRefundPayment(int bookingId) throws IOException{
+        List<Payment> payments = getAllPayments();
+        for (Payment p : payments) {
+            if (p.getBooking_id() == bookingId && p.getType() == PaymentType.REFUND.getValue()) {
+                return p;
+            }
+        }
         return null;
     }
 

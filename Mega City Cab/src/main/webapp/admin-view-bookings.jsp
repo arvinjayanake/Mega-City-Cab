@@ -69,7 +69,9 @@
                         <td class="cell-content"><%= BookingStatus.fromInt(booking.getStatus()).toString() %></td>
                         <td class="cell-content">
                             <a class="table-button" href="admin-booking-details?id=<%= booking.getId() %>" type="button"><i class="fa fa-eye"></i></a>
+                            <% if (booking.getStatus() == BookingStatus.PENDING.getValue()) {%>
                             <a class="table-button" href="admin-update-booking?id=<%= booking.getId() %>" type="button"><i class="fa fa-edit"></i></a>
+                            <% }%>
                         </td>
                     </tr>
                     <%

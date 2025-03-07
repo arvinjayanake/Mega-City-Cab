@@ -10,10 +10,15 @@
     User user = (User) request.getAttribute("user");
     Vehicle vehicle = (Vehicle) request.getAttribute("vehicle");
     Payment payment = null;
+    Payment refund = null;
     User driver = null;
 
     if (request.getAttribute("payment") instanceof Payment) {
         payment = (Payment) request.getAttribute("payment");
+    }
+
+    if (request.getAttribute("refund") instanceof Payment){
+        refund = (Payment) request.getAttribute("refund");
     }
 
     if (request.getAttribute("driver") instanceof User){
@@ -161,6 +166,25 @@
                 </div>
             </div>
             <% } %>
+
+            <!-- Refund Information -->
+            <% if (refund != null) { %>
+            <div class="details-section" id="refund-details">
+                <h2>Refund Information</h2>
+                <div class="details-item">
+                    <span class="details-label">Refund Date:</span>
+                    <span class="details-value"><%= refund.getPayment_date() %></span>
+                </div>
+                <div class="details-item">
+                    <span class="details-label">Total Amount:</span>
+                    <span class="details-value">LKR <%= refund.getAmount() %></span>
+                </div>
+                <div class="details-item">
+                    <span class="details-label">Payment Method:</span>
+                    <span class="details-value"><%= refund.getCard_no() %></span>
+                </div>
+            </div>
+            <% } %>
         </div>
     </div>
 </div>
@@ -174,12 +198,14 @@
         //printWindow.document.write('<link rel="stylesheet" href="css/booking-details.css">');
         printWindow.document.write('</head><body>');
 
+
         // Add the booking details content to the new window
         const bookingDetails = document.getElementById('booking-details').innerHTML;
         const customerDetails = document.getElementById('customer-details').innerHTML;
-        const driverDetails = document.getElementById('driver-details').innerHTML;
+        const driverDetails = document.getElementById('driver-details') ? document.getElementById('driver-details').innerHTML : '';
         const vehicleDetails = document.getElementById('vehicle-details').innerHTML;
         const paymentDetails = document.getElementById('payment-details') ? document.getElementById('payment-details').innerHTML : '';
+        const refundDetails = document.getElementById('refund-details') ? document.getElementById('refund-details').innerHTML : '';
 
         printWindow.document.write('<h1>Booking Details - Mega City Cab</h1>');
         printWindow.document.write(bookingDetails);
@@ -187,6 +213,7 @@
         printWindow.document.write(driverDetails);
         printWindow.document.write(vehicleDetails);
         printWindow.document.write(paymentDetails);
+        printWindow.document.write(refundDetails);
 
         printWindow.document.write('</body></html>');
         printWindow.document.close();

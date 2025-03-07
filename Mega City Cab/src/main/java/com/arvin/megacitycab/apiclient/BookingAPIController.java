@@ -22,7 +22,8 @@ public class BookingAPIController {
         Map<String, Object> requestBody = Map.of(
                 "id", booking.getId(),
                 "driver_id", booking.getDriver_id(),
-                "status", booking.getStatus()
+                "status", booking.getStatus(),
+                "payment_method", booking.getPayment_method()
         );
 
         String apiResponse = ApiClient.put(url, requestBody);

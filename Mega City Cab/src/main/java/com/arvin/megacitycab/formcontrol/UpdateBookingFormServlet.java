@@ -2,23 +2,16 @@ package com.arvin.megacitycab.formcontrol;
 
 import com.arvin.megacitycab.apiclient.BookingAPIController;
 import com.arvin.megacitycab.apiclient.PaymentAPIController;
-import com.arvin.megacitycab.apiclient.UserAPIController;
 import com.arvin.megacitycab.model.Booking;
-import com.arvin.megacitycab.model.Customer;
 import com.arvin.megacitycab.model.Payment;
-import com.arvin.megacitycab.model.base.User;
 import com.arvin.megacitycab.model.enums.BookingStatus;
 import com.arvin.megacitycab.model.enums.PaymentMethod;
 import com.arvin.megacitycab.model.enums.PaymentType;
-import com.arvin.megacitycab.util.Util;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-
-import java.util.List;
 
 @WebServlet("/form-update-booking")
 public class UpdateBookingFormServlet extends HttpServlet {
@@ -42,10 +35,16 @@ public class UpdateBookingFormServlet extends HttpServlet {
             //Change payment to refund if rejected
             if (booking.getStatus() == BookingStatus.REJECTED.getValue()) {
                 if (booking.getPayment_method() == PaymentMethod.ONLINE.getValue()) {
-                    Payment payment = PaymentAPIController.getPaymentByBookingId(booking.getId());
+                    Payment payment = PaymentAPIController.getBookingPayment(booking.getId());
                     if (payment != null){
-                        payment.setType(PaymentType.REFUND.getValue());
-                        PaymentAPIController.updatePayment
+                        //insert refund object
+                        Payment refundPayment = new Payment();
+                        refundPayment.setBooking_id(booking.getId());
+                        refundPayment.setCard_no(payment.getCard_no());
+                        refundPayment.setAmount(payment.getAmount());
+                        refundPayment.setType(PaymentType.REFUND.getValue());
+
+                        PaymentAPIController.createPayment(refundPayment);
                     }
                 }
             }
