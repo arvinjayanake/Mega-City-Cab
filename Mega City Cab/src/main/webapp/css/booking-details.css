@@ -45,7 +45,7 @@ nav .nav-links a.active {
 
 /* Booking Details Container */
 .booking-details-container {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 2rem auto;
     padding: 2rem;
     background-color: #FFFFFF;
@@ -148,4 +148,26 @@ footer .social-media a {
 
 footer .social-media a:hover {
     color: #FFD700;
+}
+
+/* Print Button */
+.print-button {
+    background-color: #FFD700;
+    color: #1A2A3A;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.print-button:hover {
+    background-color: #e6b800;
+}
+
+.print-button i {
+    margin-right: 8px;
 }

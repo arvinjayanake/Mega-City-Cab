@@ -3,15 +3,21 @@
 <%@ page import="com.arvin.megacitycab.model.Vehicle" %>
 <%@ page import="com.arvin.megacitycab.model.Payment" %>
 <%@ page import="com.arvin.megacitycab.model.enums.BookingStatus" %>
+<%@ page import="com.arvin.megacitycab.model.enums.PaymentMethod" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Booking booking = (Booking) request.getAttribute("booking");
-    User user = (User) request.getAttribute("customer");
+    User user = (User) request.getAttribute("user");
     Vehicle vehicle = (Vehicle) request.getAttribute("vehicle");
     Payment payment = null;
+    User driver = null;
 
     if (request.getAttribute("payment") instanceof Payment) {
         payment = (Payment) request.getAttribute("payment");
+    }
+
+    if (request.getAttribute("driver") instanceof User){
+        driver = (User) request.getAttribute("driver");
     }
 %>
 <!DOCTYPE html>
@@ -38,8 +44,50 @@
         <div class="booking-details-container">
             <h1>Booking Details</h1>
 
+            <!-- Print Button -->
+            <button class="print-button" onclick="printBookingDetails()">
+                <i class="fas fa-print"></i> Print Details
+            </button>
+
+            <!-- Booking Details -->
+            <div class="details-section" id="booking-details">
+                <h2>Booking Details</h2>
+                <div class="details-item">
+                    <span class="details-label">Booking ID:</span>
+                    <span class="details-value">#<%= booking.getId() %></span>
+                </div>
+                <div class="details-item">
+                    <span class="details-label">Pickup Location:</span>
+                    <span class="details-value"><%= booking.getPickup_location() %></span>
+                </div>
+                <div class="details-item">
+                    <span class="details-label">Pickup Time:</span>
+                    <span class="details-value"><%= booking.getPickup_datetime() %></span>
+                </div>
+                <div class="details-item">
+                    <span class="details-label">Drop-off Location:</span>
+                    <span class="details-value"><%= booking.getDropoff_location() %></span>
+                </div>
+                <div class="details-item">
+                    <span class="details-label">Distance:</span>
+                    <span class="details-value"><%= booking.getTotal_distance() %> km</span>
+                </div>
+                <div class="details-item">
+                    <span class="details-label">Total Price:</span>
+                    <span class="details-value">LKR <%= booking.getTotal_price() %></span>
+                </div>
+                <div class="details-item">
+                    <span class="details-label">Status:</span>
+                    <span class="details-value"><%= BookingStatus.fromInt(booking.getStatus()).toString() %></span>
+                </div>
+                <div class="details-item">
+                    <span class="details-label">Payment Method:</span>
+                    <span class="details-value"><%= PaymentMethod.fromInt(booking.getPayment_method()).toString() %></span>
+                </div>
+            </div>
+
             <!-- Customer Information -->
-            <div class="details-section">
+            <div class="details-section" id="customer-details">
                 <h2>Customer Information</h2>
                 <div class="details-item">
                     <span class="details-label">Name:</span>
@@ -55,8 +103,23 @@
                 </div>
             </div>
 
+            <!-- Driver Information -->
+            <% if (driver != null) { %>
+            <div class="details-section" id="driver-details">
+                <h2>Driver Information</h2>
+                <div class="details-item">
+                    <span class="details-label">Name:</span>
+                    <span class="details-value"><%= driver.getName() %></span>
+                </div>
+                <div class="details-item">
+                    <span class="details-label">Mobile:</span>
+                    <span class="details-value"><%= driver.getMobile() %></span>
+                </div>
+            </div>
+            <% } %>
+
             <!-- Vehicle Information -->
-            <div class="details-section">
+            <div class="details-section" id="vehicle-details">
                 <h2>Vehicle Information</h2>
                 <div class="details-item">
                     <span class="details-label">Vehicle:</span>
@@ -80,55 +143,58 @@
                 </div>
             </div>
 
-            <!-- Booking Details -->
-            <div class="details-section">
-                <h2>Booking Details</h2>
-                <div class="details-item">
-                    <span class="details-label">Pickup Location:</span>
-                    <span class="details-value"><%= booking.getPickup_location() %></span>
-                </div>
-                <div class="details-item">
-                    <span class="details-label">Pickup Time:</span>
-                    <span class="details-value"><%= booking.getPickup_datetime() %></span>
-                </div>
-                <div class="details-item">
-                    <span class="details-label">Drop-off Location:</span>
-                    <span class="details-value"><%= booking.getDropoff_location() %></span>
-                </div>
-                <div class="details-item">
-                    <span class="details-label">Distance:</span>
-                    <span class="details-value"><%= booking.getTotal_distance() %> km</span>
-                </div>
-                <div class="details-item">
-                    <span class="details-label">Total Price:</span>
-                    <span class="details-value">LKR <%= booking.getTotal_price() %></span>
-                </div>
-                <div class="details-item">
-                    <span class="details-label">Status:</span>
-                    <span class="details-value"><%= BookingStatus. %> km</span>
-                </div>
-            </div>
-
             <!-- Payment Information -->
-            <div class="details-section">
+            <% if (payment != null) { %>
+            <div class="details-section" id="payment-details">
                 <h2>Payment Information</h2>
                 <div class="details-item">
+                    <span class="details-label">Payment Date:</span>
+                    <span class="details-value"><%= payment.getPayment_date() %></span>
+                </div>
+                <div class="details-item">
                     <span class="details-label">Total Amount:</span>
-                    <span class="details-value">LKR 3,750.00</span>
+                    <span class="details-value">LKR <%= payment.getAmount() %></span>
                 </div>
                 <div class="details-item">
                     <span class="details-label">Payment Method:</span>
-                    <span class="details-value">Credit Card</span>
-                </div>
-                <div class="details-item">
-                    <span class="details-label">Payment Status:</span>
-                    <span class="details-value">Paid</span>
+                    <span class="details-value"><%= payment.getCard_no() %></span>
                 </div>
             </div>
+            <% } %>
         </div>
     </div>
 </div>
 
+<!-- JavaScript for Print Functionality -->
+<script>
+    function printBookingDetails() {
+        // Create a new window for printing
+        const printWindow = window.open('', '', 'height=600,width=800');
+        printWindow.document.write('<html><head><title>Booking Details</title>');
+        //printWindow.document.write('<link rel="stylesheet" href="css/booking-details.css">');
+        printWindow.document.write('</head><body>');
+
+        // Add the booking details content to the new window
+        const bookingDetails = document.getElementById('booking-details').innerHTML;
+        const customerDetails = document.getElementById('customer-details').innerHTML;
+        const driverDetails = document.getElementById('driver-details').innerHTML;
+        const vehicleDetails = document.getElementById('vehicle-details').innerHTML;
+        const paymentDetails = document.getElementById('payment-details') ? document.getElementById('payment-details').innerHTML : '';
+
+        printWindow.document.write('<h1>Booking Details - Mega City Cab</h1>');
+        printWindow.document.write(bookingDetails);
+        printWindow.document.write(customerDetails);
+        printWindow.document.write(driverDetails);
+        printWindow.document.write(vehicleDetails);
+        printWindow.document.write(paymentDetails);
+
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+
+        // Trigger the print dialog
+        printWindow.print();
+    }
+</script>
 </body>
 
 </html>

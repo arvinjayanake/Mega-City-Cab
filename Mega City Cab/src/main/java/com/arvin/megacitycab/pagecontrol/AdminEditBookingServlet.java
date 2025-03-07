@@ -5,7 +5,6 @@ import com.arvin.megacitycab.apiclient.PaymentAPIController;
 import com.arvin.megacitycab.apiclient.UserAPIController;
 import com.arvin.megacitycab.apiclient.VehicleAPIController;
 import com.arvin.megacitycab.model.Booking;
-import com.arvin.megacitycab.model.Customer;
 import com.arvin.megacitycab.model.Payment;
 import com.arvin.megacitycab.model.Vehicle;
 import com.arvin.megacitycab.model.base.User;
@@ -17,42 +16,30 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/admin-booking-details")
-public class AdminViewBookingDetailsServlet extends BasePageServlet {
+@WebServlet("/admin-update-booking")
+public class AdminEditBookingServlet extends BasePageServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             if (isAdmin(request, response)) {
                 int bookingId = Integer.parseInt(request.getParameter("id"));
                 Booking booking = BookingAPIController.getBookingById(bookingId);
-                User user = UserAPIController.getUserById(booking.getCustomer_id());
-                Vehicle vehicle = VehicleAPIController.getVehicleById(booking.getVehicle_id());
-                Payment payment = null;
-                User driver = null;
-
-                if (booking.getPayment_method() == PaymentMethod.ONLINE.getValue()) {
-                    payment = PaymentAPIController.getPaymentByBookingId(bookingId);
-                }
-
-                if (booking.getDriver_id() != -1){
-                    driver = UserAPIController.getUserById(booking.getDriver_id());
-                }
+                User driver = UserAPIController.getUserById(booking.getDriver_id());
+                List<User> drivers = UserAPIController.getAllDrivers();
 
                 request.setAttribute("booking", booking);
-                request.setAttribute("user", user);
-                request.setAttribute("vehicle", vehicle);
-                request.setAttribute("payment", payment);
                 request.setAttribute("driver", driver);
-                request.getRequestDispatcher("admin-booking-details.jsp").forward(request, response);
+                request.setAttribute("drivers", drivers);
+
+                request.getRequestDispatcher("admin-update-booking.jsp").forward(request, response);
             }
         } catch (Exception e1) {
             e1.printStackTrace();
             try {
                 request.setAttribute("error", "Unable to load booking details at the moment.");
-                RequestDispatcher dispatcher = request.getRequestDispatcher("admin-booking-details.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("admin-update-booking.jsp");
                 dispatcher.forward(request, response);
             } catch (Exception e2) {
                 e2.printStackTrace();

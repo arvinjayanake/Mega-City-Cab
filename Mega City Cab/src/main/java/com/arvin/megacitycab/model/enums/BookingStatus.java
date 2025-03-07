@@ -2,9 +2,11 @@ package com.arvin.megacitycab.model.enums;
 
 public enum BookingStatus {
     PENDING(1, "Pending"),
-    STARTED(2, "Started"),
-    COMPLETED(3, "Completed"),
-    CANCELLED(4, "Cancelled");
+    APPROVED(2, "Approved"),
+    REJECTED(3, "Rejected"),
+    STARTED(4, "Started"),
+    COMPLETED(5, "Completed"),
+    CANCELLED(6, "Cancelled");
 
     private final int value;
     private final String name;

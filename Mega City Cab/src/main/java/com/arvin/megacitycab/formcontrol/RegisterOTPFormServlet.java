@@ -43,7 +43,7 @@ public class RegisterOTPFormServlet extends HttpServlet {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("user", user);
 
-                response.sendRedirect("home");
+                response.sendRedirect("book-a-taxi");
             } else {
                 request.setAttribute("error", "Unable to verify OTP, please try again.");
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/register-otp.jsp");
