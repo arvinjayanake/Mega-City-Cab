@@ -13,6 +13,7 @@ public class Booking {
     private String pickup_datetime;
     private String dropoff_location;
     private Double total_distance;
+    private Double tax;
     private Double total_price;
     private int status;
     private String created_at;
@@ -81,6 +82,14 @@ public class Booking {
 
     public void setTotal_distance(Double total_distance) {
         this.total_distance = total_distance;
+    }
+
+    public Double getTax() {
+        return tax;
+    }
+
+    public void setTax(Double tax) {
+        this.tax = tax;
     }
 
     public Double getTotal_price() {

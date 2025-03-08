@@ -1,21 +1,16 @@
 package com.arvin.megacitycab.formcontrol;
 
 import com.arvin.megacitycab.apiclient.BookingAPIController;
-import com.arvin.megacitycab.config.Config;
 import com.arvin.megacitycab.model.Booking;
 import com.arvin.megacitycab.model.base.User;
 import com.arvin.megacitycab.model.enums.BookingStatus;
 import com.arvin.megacitycab.model.enums.PaymentMethod;
-import com.arvin.megacitycab.apiclient.ApiClient;
-import com.google.gson.Gson;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
-import java.util.Map;
 
 
 @WebServlet("/form-book-a-taxi")
@@ -38,6 +33,7 @@ public class BookATaxiFormServlet extends HttpServlet {
             mBooking.setDropoff_location(request.getParameter("drop_off_location"));
             mBooking.setVehicle_id(Integer.parseInt(request.getParameter("vehicle")));
             mBooking.setTotal_distance(Double.parseDouble(request.getParameter("distance")));
+            mBooking.setTax(Double.parseDouble(request.getParameter("tax")));
             mBooking.setTotal_price(Double.parseDouble(request.getParameter("price")));
             mBooking.setPayment_method(Integer.parseInt(request.getParameter("payment_method")));
             mBooking.setStatus(BookingStatus.PENDING.getValue());

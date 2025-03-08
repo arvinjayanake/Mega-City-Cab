@@ -50,6 +50,7 @@
                         <th>Drop-off Info</th>
                         <th>Distance</th>
                         <th>Price</th>
+                        <th>Tax</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -65,7 +66,8 @@
                         <td class="cell-content"><%= booking.getPickup_location() + "<br>" + booking.getPickup_datetime() %></td>
                         <td class="cell-content"><%= booking.getDropoff_location() %></td>
                         <td class="cell-content"><%= booking.getTotal_distance() %>km</td>
-                        <td class="cell-content"><%= booking.getTotal_price() %></td>
+                        <td class="cell-content">LKR <%= booking.getTax() %></td>
+                        <td class="cell-content">LKR <%= booking.getTotal_price() %></td>
                         <td class="cell-content"><%= BookingStatus.fromInt(booking.getStatus()).toString() %></td>
                         <td class="cell-content">
                             <a class="table-button" href="admin-booking-details?id=<%= booking.getId() %>" type="button"><i class="fa fa-eye"></i></a>

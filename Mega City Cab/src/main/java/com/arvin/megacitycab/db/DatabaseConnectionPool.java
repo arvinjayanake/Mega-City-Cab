@@ -1,6 +1,6 @@
 package com.arvin.megacitycab.db;
 
-import com.arvin.megacitycab.config.Config;
+import com.arvin.megacitycab.config.AppConfig;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,8 +14,8 @@ public class DatabaseConnectionPool {
     private final List<Connection> usedConnections = new ArrayList<>();
 
     private DatabaseConnectionPool() {
-        connectionPool = new ArrayList<>(Config.DB_CONNECTION_POOL_SIZE);
-        for (int i = 0; i < Config.DB_CONNECTION_POOL_SIZE; i++) {
+        connectionPool = new ArrayList<>(AppConfig.DB_CONNECTION_POOL_SIZE);
+        for (int i = 0; i < AppConfig.DB_CONNECTION_POOL_SIZE; i++) {
             connectionPool.add(createConnection());
         }
     }
@@ -34,7 +34,7 @@ public class DatabaseConnectionPool {
     private Connection createConnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            return DriverManager.getConnection(Config.DB_URL, Config.DB_USERNAME, Config.DB_PASSWORD);
+            return DriverManager.getConnection(AppConfig.DB_URL, AppConfig.DB_USERNAME, AppConfig.DB_PASSWORD);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Failed to create a database connection.", e);

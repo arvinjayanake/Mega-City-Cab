@@ -1,0 +1,91 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.booking-details-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.booking-details-container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.booking-details-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    background: #f9f9f9;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card-header h3 {
+    margin: 0;
+    color: #333;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.status.upcoming {
+    background-color: #ffeb3b;
+    color: #000;
+}
+
+.status.completed {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+.status.cancelled {
+    background-color: #f44336;
+    color: #fff;
+}
+
+.card-body p {
+    margin: 10px 0;
+    color: #555;
+}
+
+.card-body hr {
+    border: 0;
+    height: 1px;
+    background: #ddd;
+    margin: 15px 0;
+}
+
+.print-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.print-button:hover {
+    background-color: #45a049;
+}

@@ -1,6 +1,8 @@
 <%@ page import="com.arvin.megacitycab.model.Vehicle" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.arvin.megacitycab.model.Config" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<% Config taxConfig = (Config) request.getAttribute("tax_config"); %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,6 +68,11 @@
                    oninput="calculatePrice()">
         </div>
         <div class="form-group">
+            <label for="tax">Government TAX (<%= taxConfig.getValue() %>%)</label>
+            <input type="hidden" id="tax_percentage" value="<%= taxConfig.getValue() %>">
+            <input type="number" id="tax" name="tax" readonly required>
+        </div>
+        <div class="form-group">
             <label for="price">Total Price (LKR)</label>
             <input type="number" id="price" name="price" placeholder="Enter price" readonly required>
         </div>
@@ -123,14 +130,22 @@
     // Function to calculate total price
     function calculatePrice() {
         const distance = document.getElementById('distance').value;
+        const tax = document.getElementById('tax_percentage').value;
         const selectedOption = document.getElementById('vehicle').options[document.getElementById('vehicle').selectedIndex];
         const pricePerKm = selectedOption.getAttribute('data-price-per-km');
 
         if (distance && pricePerKm) {
-            const totalPrice = (distance * pricePerKm).toFixed(2);
-            document.getElementById('price').value = totalPrice;
+            const tripPrice = (distance * pricePerKm);
+            const totalTax = ((tripPrice / 100) * tax);
+            const totalPrice = (tripPrice + totalTax);
+
+            console.log("tax: " + totalTax + " | price" + totalPrice)
+
+            document.getElementById('tax').value = totalTax.toFixed(2);
+            document.getElementById('price').value = totalPrice.toFixed(2);
         } else {
             document.getElementById('price').value = '';
+            document.getElementById('tax').value = '';
         }
     }
 

@@ -3,20 +3,15 @@ package com.arvin.megacitycab.formcontrol;
 import com.arvin.megacitycab.apiclient.BookingAPIController;
 import com.arvin.megacitycab.apiclient.PaymentAPIController;
 import com.arvin.megacitycab.apiclient.VehicleAPIController;
-import com.arvin.megacitycab.config.Config;
 import com.arvin.megacitycab.model.Booking;
 import com.arvin.megacitycab.model.Payment;
 import com.arvin.megacitycab.model.Vehicle;
 import com.arvin.megacitycab.model.enums.PaymentType;
-import com.arvin.megacitycab.apiclient.ApiClient;
-import com.google.gson.Gson;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import java.util.Map;
 
 
 @WebServlet("/form-online-payment")

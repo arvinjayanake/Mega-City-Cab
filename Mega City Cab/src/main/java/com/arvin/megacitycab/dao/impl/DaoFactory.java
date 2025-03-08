@@ -22,4 +22,10 @@ public class DaoFactory {
     public static PaymentDao paymentDao() {
         return new PaymentDaoImpl();
     }
+
+    public static ConfigDao configDao() {
+        return new ConfigDaoImpl();
+    }
+
+
 }

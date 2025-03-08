@@ -1,14 +1,11 @@
 package com.arvin.megacitycab.formcontrol;
 
 import com.arvin.megacitycab.apiclient.UserAPIController;
-import com.arvin.megacitycab.config.Config;
 import com.arvin.megacitycab.dao.impl.DaoFactory;
 import com.arvin.megacitycab.dao.UserDao;
 import com.arvin.megacitycab.model.Customer;
 import com.arvin.megacitycab.model.base.User;
-import com.arvin.megacitycab.apiclient.ApiClient;
 import com.arvin.megacitycab.util.Util;
-import com.google.gson.Gson;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,8 +13,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
-import java.util.Map;
 
 
 @WebServlet("/form-register")

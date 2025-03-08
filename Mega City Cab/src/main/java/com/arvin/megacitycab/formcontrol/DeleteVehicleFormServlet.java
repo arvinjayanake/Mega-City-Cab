@@ -1,15 +1,11 @@
 package com.arvin.megacitycab.formcontrol;
 
 import com.arvin.megacitycab.apiclient.VehicleAPIController;
-import com.arvin.megacitycab.config.Config;
-import com.arvin.megacitycab.apiclient.ApiClient;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import java.util.Map;
 
 
 @WebServlet("/form-delete-vehicle")

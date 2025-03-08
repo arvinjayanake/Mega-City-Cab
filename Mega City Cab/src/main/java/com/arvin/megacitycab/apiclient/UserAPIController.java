@@ -1,6 +1,6 @@
 package com.arvin.megacitycab.apiclient;
 
-import com.arvin.megacitycab.config.Config;
+import com.arvin.megacitycab.config.AppConfig;
 import com.arvin.megacitycab.model.base.User;
 import com.arvin.megacitycab.util.Util;
 import com.google.gson.Gson;
@@ -15,7 +15,7 @@ import java.util.Map;
 public class UserAPIController {
 
     public static User userOtpVerify(int id, String otp) throws IOException {
-        String url = Config.API_URL_BASE + "user/otp/verify";
+        String url = AppConfig.API_URL_BASE + "user/otp/verify";
         Map<String, Object> requestBody = Map.of(
                 "id", id,
                 "otp", otp
@@ -25,13 +25,13 @@ public class UserAPIController {
     }
 
     public static User getUserById(int id) throws IOException {
-        String url = Config.API_URL_BASE + "user?id=" + id;
+        String url = AppConfig.API_URL_BASE + "user?id=" + id;
         String apiResponse = ApiClient.get(url);
         return new Gson().fromJson(apiResponse, User.class);
     }
 
     public static List<User> getAllAdmins() throws IOException {
-        String url = Config.API_URL_BASE + "users?type=3";
+        String url = AppConfig.API_URL_BASE + "users?type=3";
         String apiResponse = ApiClient.get(url);
         Gson gson = new Gson();
         Type userListType = new TypeToken<List<User>>() {
@@ -40,7 +40,7 @@ public class UserAPIController {
     }
 
     public static List<User> getAllDrivers() throws IOException {
-        String url = Config.API_URL_BASE + "users?type=2";
+        String url = AppConfig.API_URL_BASE + "users?type=2";
         String apiResponse = ApiClient.get(url);
         Gson gson = new Gson();
         Type userListType = new TypeToken<List<User>>() {
@@ -49,7 +49,7 @@ public class UserAPIController {
     }
 
     public static List<User> getAllCustomers() throws IOException {
-        String url = Config.API_URL_BASE + "users?type=1";
+        String url = AppConfig.API_URL_BASE + "users?type=1";
         String apiResponse = ApiClient.get(url);
         Gson gson = new Gson();
         Type userListType = new TypeToken<List<User>>() {
@@ -62,7 +62,7 @@ public class UserAPIController {
     }
 
     public static User updateUser(User user) throws IOException {
-        String url = Config.API_URL_BASE + "user";
+        String url = AppConfig.API_URL_BASE + "user";
         Map<String, Object> requestBody = new HashMap<>(Map.of(
                 "id", user.getId(),
                 "is_verified", user.getIs_verified()
@@ -98,7 +98,7 @@ public class UserAPIController {
     }
 
     public static User createUser(User user) throws IOException {
-        String url = Config.API_URL_BASE + "user";
+        String url = AppConfig.API_URL_BASE + "user";
         Map<String, Object> requestBody = Map.of(
                 "name", user.getName(),
                 "nic", user.getNic(),
@@ -116,13 +116,13 @@ public class UserAPIController {
     }
 
     public static void deleteUser(String id) throws IOException {
-        String url = Config.API_URL_BASE + "user";
+        String url = AppConfig.API_URL_BASE + "user";
         Map<String, Object> requestBody = Map.of("id", id);
         ApiClient.delete(url, requestBody);
     }
 
     public static User login(String email, String password) throws IOException {
-        String url = Config.API_URL_BASE + "user/login";
+        String url = AppConfig.API_URL_BASE + "user/login";
         Map<String, Object> requestBody = Map.of(
                 "email", email,
                 "password", Util.toSHA256(password)

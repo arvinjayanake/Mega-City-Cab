@@ -38,19 +38,11 @@
                     User custommer = UserAPIController.getUserById(booking.getCustomer_id());
         %>
 
-        <div class="booking-card">
+        <div class="booking-card" onclick="onCardClick(<%= booking.getId() %>)">
             <div class="card-header">
                 <h3>Booking #<%= booking.getId() %>
                 </h3>
-                <% if (vehicle.getStatus() == BookingStatus.PENDING.getValue()) { %>
-                <span class="status upcoming">Pending</span>
-                <% } else if (vehicle.getStatus() == BookingStatus.STARTED.getValue()) { %>
-                <span class="status completed">Started</span>
-                <% } else if (vehicle.getStatus() == BookingStatus.COMPLETED.getValue()) { %>
-                <span class="status completed">Completed</span>
-                <% } else if (vehicle.getStatus() == BookingStatus.CANCELLED.getValue()) { %>
-                <span class="status cancelled">Cancelled</span>
-                <% } %>
+                <span class="status active"><%= BookingStatus.fromInt(booking.getStatus()).toString() %></span>
             </div>
             <div class="card-body">
                 <% if (loggedUser.getType() == UserType.DRIVER.getValue()) {%>
@@ -115,5 +107,12 @@
 
 <!-- Footer -->
 <jsp:include page="user-footer.jsp"/>
+
+<script>
+    function onCardClick(bookingId){
+        window.location.href = 'booking-details?id='+bookingId;
+    }
+</script>
+
 </body>
 </html>

@@ -1,12 +1,10 @@
 package com.arvin.megacitycab.pagecontrol;
 
+import com.arvin.megacitycab.apiclient.ConfigAPIController;
 import com.arvin.megacitycab.apiclient.VehicleAPIController;
-import com.arvin.megacitycab.config.Config;
+import com.arvin.megacitycab.model.Config;
 import com.arvin.megacitycab.model.Vehicle;
 import com.arvin.megacitycab.model.enums.VehicleStatus;
-import com.arvin.megacitycab.apiclient.ApiClient;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -15,7 +13,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +23,7 @@ public class BookATaxiPageServlet extends HttpServlet {
         try{
             //Api call
             List<Vehicle> vehicles = VehicleAPIController.getAllVehicles();
+            Config taxConfig = ConfigAPIController.getTaxConfig();
 
             //Filter available taxi
             List<Vehicle> availableVehicles = new ArrayList<>();
@@ -38,6 +36,7 @@ public class BookATaxiPageServlet extends HttpServlet {
 
             //ser data
             request.setAttribute("vehicles", vehicles);
+            request.setAttribute("tax_config", taxConfig);
             request.getRequestDispatcher("book-a-taxi.jsp").forward(request, response);
         }catch (Exception ex){
             ex.printStackTrace();

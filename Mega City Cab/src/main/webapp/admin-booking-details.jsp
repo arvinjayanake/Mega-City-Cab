@@ -78,6 +78,10 @@
                     <span class="details-value"><%= booking.getTotal_distance() %> km</span>
                 </div>
                 <div class="details-item">
+                    <span class="details-label">Government TAX:</span>
+                    <span class="details-value">LKR <%= booking.getTax() %></span>
+                </div>
+                <div class="details-item">
                     <span class="details-label">Total Price:</span>
                     <span class="details-value">LKR <%= booking.getTotal_price() %></span>
                 </div>

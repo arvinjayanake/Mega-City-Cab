@@ -1,6 +1,6 @@
 package com.arvin.megacitycab.apiclient;
 
-import com.arvin.megacitycab.config.Config;
+import com.arvin.megacitycab.config.AppConfig;
 import com.arvin.megacitycab.model.Payment;
 import com.arvin.megacitycab.model.enums.PaymentType;
 import com.google.gson.Gson;
@@ -14,7 +14,7 @@ import java.util.Map;
 public class PaymentAPIController {
 
     public static List<Payment> getAllPayments() throws IOException {
-        String url = Config.API_URL_BASE + "payments";
+        String url = AppConfig.API_URL_BASE + "payments";
         String apiResponse = ApiClient.get(url);
         Gson gson = new Gson();
         Type paymentListType = new TypeToken<List<Payment>>() {
@@ -43,13 +43,13 @@ public class PaymentAPIController {
     }
 
     public static Payment getPaymentById(int id) throws IOException {
-        String url = Config.API_URL_BASE + "payment?id=" + id;
+        String url = AppConfig.API_URL_BASE + "payment?id=" + id;
         String apiResponse = ApiClient.get(url);
         return new Gson().fromJson(apiResponse, Payment.class);
     }
 
     public static Payment createPayment(Payment payment) throws IOException {
-        String url = Config.API_URL_BASE + "payment";
+        String url = AppConfig.API_URL_BASE + "payment";
         Map<String, Object> requestBody = Map.of(
                 "booking_id", payment.getBooking_id(),
                 "card_no", payment.getCard_no(),

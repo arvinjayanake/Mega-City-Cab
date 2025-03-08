@@ -2,14 +2,10 @@ package com.arvin.megacitycab.pagecontrol;
 
 
 import com.arvin.megacitycab.apiclient.VehicleAPIController;
-import com.arvin.megacitycab.config.Config;
 import com.arvin.megacitycab.model.Vehicle;
-import com.arvin.megacitycab.apiclient.ApiClient;
-import com.google.gson.Gson;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 

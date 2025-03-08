@@ -2,18 +2,12 @@ package com.arvin.megacitycab.pagecontrol;
 
 
 import com.arvin.megacitycab.apiclient.UserAPIController;
-import com.arvin.megacitycab.config.Config;
 import com.arvin.megacitycab.model.base.User;
-import com.arvin.megacitycab.apiclient.ApiClient;
-import com.arvin.megacitycab.model.enums.UserType;
-import com.google.gson.Gson;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
