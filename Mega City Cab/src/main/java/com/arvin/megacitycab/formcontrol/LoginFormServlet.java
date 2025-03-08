@@ -47,7 +47,7 @@ public class LoginFormServlet extends HttpServlet {
             } else if (user.getType() == UserType.ADMIN.getValue()){
                 response.sendRedirect("admin-view-customers");
             } else {
-                response.sendRedirect("home");
+                response.sendRedirect("booking-history");
             }
         } catch (Exception e1) {
             e1.printStackTrace();

@@ -5,6 +5,7 @@ import com.arvin.megacitycab.apiclient.VehicleAPIController;
 import com.arvin.megacitycab.model.Booking;
 import com.arvin.megacitycab.model.Vehicle;
 import com.arvin.megacitycab.model.base.User;
+import com.arvin.megacitycab.model.enums.UserType;
 import com.arvin.megacitycab.model.enums.VehicleStatus;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -22,18 +23,20 @@ import java.util.List;
 public class BookingHistoryPageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try{
-            //Logged user
+        try {
             HttpSession session = request.getSession(true);
             User loggedUser = (User) session.getAttribute("user");
 
-            //Api call
-            List<Booking> bookings = BookingAPIController.getUserBookings(loggedUser.getId());
+            if (loggedUser.getType() == UserType.CUSTOMER.getValue()) {
+                List<Booking> userBookings = BookingAPIController.getUserBookings(loggedUser.getId());
+                request.setAttribute("bookings", userBookings);
+            } else if (loggedUser.getType() == UserType.DRIVER.getValue()) {
+                List<Booking> userBookings = BookingAPIController.getDriverBookings(loggedUser.getId());
+                request.setAttribute("bookings", userBookings);
+            }
 
-            //ser data
-            request.setAttribute("bookings", bookings);
             request.getRequestDispatcher("booking-history.jsp").forward(request, response);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
             try {
                 request.setAttribute("error", "Unable to load data at the moment.");

@@ -156,3 +156,35 @@ footer .social-media a {
 footer .social-media a:hover {
     color: #FFD700;
 }
+
+.approve-button {
+    background-color: #4CAF50;
+    color: #FFFFFF;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.approve-button:hover {
+    background-color: #45a049;
+}
+
+.cancel-button {
+    background-color: #E74C3C;
+    color: #FFFFFF;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cancel-button:hover {
+    background-color: #c0392b;
+}

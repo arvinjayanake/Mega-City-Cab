@@ -53,15 +53,14 @@ nav .nav-links .login-button:hover {
     background-color: #e6b800;
 }
 
-/* Hero Section */
 .hero {
-    background-color: #1A2A3A;
     height: 70vh;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     color: #FFFFFF;
+    background: url('../img/hero-bg.jpg') no-repeat center center/cover; /* Center and crop the image */
 }
 
 .hero-content {

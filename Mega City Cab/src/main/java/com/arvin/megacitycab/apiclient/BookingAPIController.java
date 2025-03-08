@@ -67,6 +67,18 @@ public class BookingAPIController {
         return bookings;
     }
 
+    public static List<Booking> getDriverBookings(int driverId) throws IOException {
+        List<Booking> bookings = new ArrayList<>();
+
+        for (Booking b : getAllBookings()) {
+            if (b.getDriver_id() == driverId) {
+                bookings.add(b);
+            }
+        }
+
+        return bookings;
+    }
+
     public static List<Booking> getAllBookings() throws IOException {
         String url = Config.API_URL_BASE + "bookings";
         String apiResponse = ApiClient.get(url);
