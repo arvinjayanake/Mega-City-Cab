@@ -23,7 +23,7 @@ public class ViewBookingDetailsServlet extends BasePageServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            if (isCustomer(request, response)) {
+            if (isCustomerOrDriver(request, response)) {
                 int bookingId = Integer.parseInt(request.getParameter("id"));
                 Booking booking = BookingAPIController.getBookingById(bookingId);
                 User user = UserAPIController.getUserById(booking.getCustomer_id());
