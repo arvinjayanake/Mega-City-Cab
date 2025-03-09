@@ -16,7 +16,7 @@ class BookingDaoImpl extends BaseDao implements BookingDao {
 
     @Override
     public Booking addBooking(Booking booking) throws SQLException {
-        String sql = "INSERT INTO booking (customer_id, vehicle_id, driver_id, pickup_location, pickup_datetime, dropoff_location, total_distance, tax, total_price, status, payment_method) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO booking (customer_id, vehicle_id, driver_id, pickup_location, pickup_datetime, dropoff_location, total_distance, tax, discount, total_price, status, payment_method) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         Connection conn = null;
 
         try {
@@ -30,9 +30,10 @@ class BookingDaoImpl extends BaseDao implements BookingDao {
                 stmt.setString(6, booking.getDropoff_location());
                 stmt.setDouble(7, booking.getTotal_distance());
                 stmt.setDouble(8, booking.getTax());
-                stmt.setDouble(9, booking.getTotal_price());
-                stmt.setInt(10, booking.getStatus());
-                stmt.setInt(11, booking.getPayment_method());
+                stmt.setDouble(9, booking.getDiscount());
+                stmt.setDouble(10, booking.getTotal_price());
+                stmt.setInt(11, booking.getStatus());
+                stmt.setInt(12, booking.getPayment_method());
                 int rowsAffected = stmt.executeUpdate();
 
                 // Retrieve the generated ID
@@ -135,6 +136,10 @@ class BookingDaoImpl extends BaseDao implements BookingDao {
             sql.append("tax = ?, ");
             params.add(booking.getTax());
         }
+        if (booking.getDiscount() != null && booking.getDiscount() > 0.0) {
+            sql.append("discount = ?, ");
+            params.add(booking.getDiscount());
+        }
         if (booking.getTotal_price() != null) {
             sql.append("total_price = ?, ");
             params.add(booking.getTotal_price());
@@ -186,6 +191,7 @@ class BookingDaoImpl extends BaseDao implements BookingDao {
         booking.setDropoff_location(rs.getString("dropoff_location"));
         booking.setTotal_distance(rs.getDouble("total_distance"));
         booking.setTax(rs.getDouble("tax"));
+        booking.setDiscount(rs.getDouble("discount"));
         booking.setTotal_price(rs.getDouble("total_price"));
         booking.setStatus(rs.getInt("status"));
         booking.setPayment_method(rs.getInt("payment_method"));

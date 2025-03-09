@@ -24,6 +24,7 @@ public class BookATaxiFormServlet extends HttpServlet {
             User loggedUser = (User) session.getAttribute("user");
 
             String vehicle_name = request.getParameter("vehicle_name");
+            Double discountAmount = (request.getParameter("discount_amount") != null) ? Double.parseDouble(request.getParameter("discount_amount")) : 0.0;
 
             //Data
             Booking mBooking = new Booking();
@@ -34,6 +35,7 @@ public class BookATaxiFormServlet extends HttpServlet {
             mBooking.setVehicle_id(Integer.parseInt(request.getParameter("vehicle")));
             mBooking.setTotal_distance(Double.parseDouble(request.getParameter("distance")));
             mBooking.setTax(Double.parseDouble(request.getParameter("tax")));
+            mBooking.setDiscount(discountAmount);
             mBooking.setTotal_price(Double.parseDouble(request.getParameter("price")));
             mBooking.setPayment_method(Integer.parseInt(request.getParameter("payment_method")));
             mBooking.setStatus(BookingStatus.PENDING.getValue());
@@ -45,7 +47,7 @@ public class BookATaxiFormServlet extends HttpServlet {
             request.setAttribute("booking", booking);
             request.setAttribute("vehicle_name", vehicle_name);
 
-            if (mBooking.getPayment_method() == PaymentMethod.ONLINE.getValue()){
+            if (mBooking.getPayment_method() == PaymentMethod.ONLINE.getValue()) {
                 request.getRequestDispatcher("booking-payment.jsp").forward(request, response);
             } else {
                 request.getRequestDispatcher("booking-completed.jsp").forward(request, response);

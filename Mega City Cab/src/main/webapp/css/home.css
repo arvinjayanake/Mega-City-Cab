@@ -41,18 +41,6 @@ nav .nav-links a:hover {
     color: #FFD700;
 }
 
-nav .nav-links .login-button {
-    background-color: #FFD700;
-    color: #1A2A3A;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    font-weight: 600;
-}
-
-nav .nav-links .login-button:hover {
-    background-color: #e6b800;
-}
-
 .hero {
     height: 70vh;
     display: flex;

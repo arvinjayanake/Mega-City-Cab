@@ -1,3 +1,12 @@
+<%@ page import="com.arvin.megacitycab.model.base.User" %>
+<%@ page import="com.arvin.megacitycab.model.enums.UserType" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+  User loggedUser = null;
+  if (session.getAttribute("user") instanceof User) {
+    loggedUser = (User) session.getAttribute("user");
+  }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +19,7 @@
 </head>
 <body>
 <!-- Navigation Bar -->
-<jsp:include page="user-nav-bar.jsp" />
+<jsp:include page="pre-login-nav-bar.jsp"/>
 
 <!-- Contact Us Section -->
 <div class="contact-container">

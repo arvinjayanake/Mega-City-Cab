@@ -14,6 +14,7 @@ public class Booking {
     private String dropoff_location;
     private Double total_distance;
     private Double tax;
+    private Double discount;
     private Double total_price;
     private int status;
     private String created_at;
@@ -92,6 +93,14 @@ public class Booking {
         this.tax = tax;
     }
 
+    public Double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
+
     public Double getTotal_price() {
         return total_price;
     }
@@ -134,6 +143,22 @@ public class Booking {
 
     @Override
     public String toString() {
-        return "#" + id + "|" + pickup_location + "|" + pickup_datetime + "|" + dropoff_location + "|" + total_distance + "km|" + total_price;
+        return "Booking{" +
+                "id=" + id +
+                ", customer_id=" + customer_id +
+                ", vehicle_id=" + vehicle_id +
+                ", driver_id=" + driver_id +
+                ", pickup_location='" + pickup_location + '\'' +
+                ", pickup_datetime='" + pickup_datetime + '\'' +
+                ", dropoff_location='" + dropoff_location + '\'' +
+                ", total_distance=" + total_distance +
+                ", tax=" + tax +
+                ", discount=" + discount +
+                ", total_price=" + total_price +
+                ", status=" + status +
+                ", created_at='" + created_at + '\'' +
+                ", updated_at='" + updated_at + '\'' +
+                ", payment_method=" + payment_method +
+                '}';
     }
 }

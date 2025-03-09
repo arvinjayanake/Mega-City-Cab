@@ -82,6 +82,10 @@
                     <span class="details-value">LKR <%= booking.getTax() %></span>
                 </div>
                 <div class="details-item">
+                    <span class="details-label">Discount:</span>
+                    <span class="details-value">LKR <%= booking.getDiscount() %></span>
+                </div>
+                <div class="details-item">
                     <span class="details-label">Total Price:</span>
                     <span class="details-value">LKR <%= booking.getTotal_price() %></span>
                 </div>

@@ -5,6 +5,9 @@ body {
     padding: 0;
     background-color: #f8f9fa;
     color: #1A2A3A;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* Navigation Bar */
@@ -14,6 +17,9 @@ nav {
     align-items: center;
     background-color: #1A2A3A;
     padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 nav .logo {
@@ -45,28 +51,16 @@ nav .nav-links a.active {
     font-weight: 600;
 }
 
-nav .nav-links .register-button {
-    background-color: #FFD700;
-    color: #1A2A3A;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    font-weight: 600;
-    transition: background-color 0.3s ease;
-}
-
-nav .nav-links .register-button:hover {
-    background-color: #e6b800;
-}
-
-/* Login Container */
-.login-container {
+/* Registration Container */
+.registration-container {
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 70vh;
+    padding: 2rem 0;
 }
 
-.login-form {
+.registration-form {
     background-color: #FFFFFF;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -75,7 +69,7 @@ nav .nav-links .register-button:hover {
     text-align: center;
 }
 
-.login-form h2 {
+.registration-form h2 {
     color: #1A2A3A;
     margin-bottom: 1.5rem;
 }
@@ -84,13 +78,6 @@ nav .nav-links .register-button:hover {
 .input-group {
     margin-bottom: 1.5rem;
     text-align: left;
-}
-
-.input-group label {
-    display: block;
-    color: #666;
-    font-size: 14px;
-    margin-bottom: 0.5rem;
 }
 
 .input-group input {
@@ -119,7 +106,7 @@ nav .nav-links .register-button:hover {
     font-size: 14px;
 }
 
-/* Login Button */
+/* Register Button */
 button {
     width: 100%;
     padding: 12px;
@@ -160,7 +147,7 @@ footer {
     padding: 1rem;
     background-color: #1A2A3A;
     color: #FFFFFF;
-    margin-top: 2rem;
+    margin-top: auto;
 }
 
 footer .footer-links {

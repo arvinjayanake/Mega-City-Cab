@@ -10,6 +10,10 @@
     <title>Mega City Cab - Login</title>
 </head>
 <body>
+<!-- Pre-Login Navigation Bar -->
+<jsp:include page="pre-login-nav-bar.jsp"/>
+
+<!-- Login Container -->
 <div class="login-container">
     <div class="login-form">
         <h2>Login to Mega City Cab</h2>
@@ -39,5 +43,8 @@
         </form>
     </div>
 </div>
+
+<!-- Footer -->
+<jsp:include page="user-footer.jsp"/>
 </body>
 </html>

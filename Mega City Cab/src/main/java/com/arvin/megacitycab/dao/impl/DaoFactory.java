@@ -27,5 +27,8 @@ public class DaoFactory {
         return new ConfigDaoImpl();
     }
 
+    public static DiscountDao discountDao() {
+        return new DiscountDaoImpl();
+    }
 
 }

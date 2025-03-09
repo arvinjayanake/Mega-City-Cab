@@ -68,13 +68,25 @@
                    oninput="calculatePrice()">
         </div>
         <div class="form-group">
+            <label for="discount">Discount Code (Optional)</label>
+            <input type="hidden" id="discount_type" name="discount_type" >
+            <input type="hidden" id="discount_value" name="discount_value" value="0.0">
+            <input type="hidden" id="discount_amount" name="discount_amount" value="0.0">
+            <input type="text" style="text-transform:uppercase" id="discount" name="discount" maxlength="8"
+                   placeholder="Enter Discount Code"
+                   oninput="onDiscountChanged()">
+        </div>
+        <!-- Discount Information Display -->
+        <div id="discount-info" class="vehicle-info" style="display: none">
+        </div>
+        <div class="form-group">
             <label for="tax">Government TAX (<%= taxConfig.getValue() %>%)</label>
             <input type="hidden" id="tax_percentage" value="<%= taxConfig.getValue() %>">
-            <input type="number" id="tax" name="tax" readonly required>
+            <input type="number" id="tax" name="tax" style="background-color: #f3f3f3;" readonly required>
         </div>
         <div class="form-group">
             <label for="price">Total Price (LKR)</label>
-            <input type="number" id="price" name="price" placeholder="Enter price" readonly required>
+            <input type="number" style="background-color: #f3f3f3;" id="price" name="price" placeholder="Enter price" readonly required>
         </div>
         <div class="form-group">
             <label for="payment_method">Payment Method</label>
@@ -92,6 +104,63 @@
 
 <!-- JavaScript -->
 <script>
+    function onDiscountAvailable(type, value) {
+        const typeString = (type === 0) ? "Fixed Amount": "Percentage";
+        let valueString = "LKR " + value + ".00";
+        if (type === 1){
+            valueString = value + "%";
+        }
+
+        const discountInfo = "<p><strong>Discount Type:</strong> " + typeString + " </p>" +
+            "<p><strong>Discount:</strong> " + valueString + "</p>";
+
+        document.getElementById('discount_type').value = type;
+        document.getElementById('discount_value').value = value;
+        document.getElementById('discount-info').style.display = "block";
+        document.getElementById('discount-info').innerHTML = discountInfo;
+        calculatePrice();
+    }
+
+
+    function onDiscountChanged() {
+        const discountCode = document.getElementById("discount").value;
+
+        if (discountCode.length === 8) {
+            //apply discount
+            const url = window.location.href.split('/').slice(0, -1).join('/') + "/api/discount?discount_code=" + discountCode;
+
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.responseType = "json";
+
+            xhr.onload = function () {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    const data = xhr.response;
+                    if (data['enabled'] === 1) {
+                        const type = data['type'];
+                        const value = data['value'];
+                        onDiscountAvailable(type, value);
+                    }
+                } else {
+                    console.error("Request failed with status:", xhr.status);
+                }
+            };
+
+            xhr.onerror = function () {
+                console.error("Request failed due to a network error.");
+            };
+
+            xhr.send();
+        } else {
+            //remove discount
+            document.getElementById('discount-info').visible = false;
+            document.getElementById('discount-info').style.display = "none";
+            document.getElementById('discount_type').value = null;
+            document.getElementById('discount_value').value = 0.0;
+            calculatePrice();
+        }
+    }
+
     function disablePastDates() {
         const now = new Date();
         const year = now.getFullYear();
@@ -133,19 +202,33 @@
         const tax = document.getElementById('tax_percentage').value;
         const selectedOption = document.getElementById('vehicle').options[document.getElementById('vehicle').selectedIndex];
         const pricePerKm = selectedOption.getAttribute('data-price-per-km');
+        const discountType = document.getElementById('discount_type').value;
+        const discountValue = document.getElementById('discount_value').value;
 
         if (distance && pricePerKm) {
             const tripPrice = (distance * pricePerKm);
             const totalTax = ((tripPrice / 100) * tax);
-            const totalPrice = (tripPrice + totalTax);
+            let totalPrice = (tripPrice + totalTax);
 
-            console.log("tax: " + totalTax + " | price" + totalPrice)
+            if (discountType !== "" && discountValue !== ""){
+                if (discountType === "0"){
+                    //fixed value
+                    totalPrice = totalPrice - discountValue;
+                    document.getElementById('discount_amount').value = discountValue;
+                } else if (discountType === "1"){
+                    //percentage
+                    const percentageDiscountValue = ((totalPrice / 100) * discountValue);
+                    totalPrice = totalPrice - percentageDiscountValue;
+                    document.getElementById('discount_amount').value = percentageDiscountValue;
+                }
+            }
 
             document.getElementById('tax').value = totalTax.toFixed(2);
             document.getElementById('price').value = totalPrice.toFixed(2);
         } else {
             document.getElementById('price').value = '';
             document.getElementById('tax').value = '';
+            document.getElementById('discount_amount').value = '0.0';
         }
     }
 

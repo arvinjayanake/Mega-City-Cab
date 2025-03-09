@@ -108,7 +108,7 @@ public class UserAPIController {
                 "verification_code", user.getVerification_code(),
                 "is_verified", user.getIs_verified(),
                 "type", user.getType(),
-                "password", (user.getPassword() == null || user.getPassword().isEmpty()) ? null : Util.toSHA256(user.getPassword())
+                "password", (user.getPassword() == null || user.getPassword().isEmpty()) ? null : user.getPassword()
         );
 
         String apiResponse = ApiClient.post(url, requestBody);

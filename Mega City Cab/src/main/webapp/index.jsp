@@ -20,20 +20,7 @@
 </head>
 <body>
 <!-- Navigation Bar -->
-<nav>
-    <div class="logo">Mega City Cab</div>
-    <ul class="nav-links">
-        <% if (loggedUser == null) {%>
-        <li><a href="login" class="login-button">Login</a></li>
-        <% } else { %>
-            <% if (loggedUser.getType() == UserType.ADMIN.getValue()) {%>
-                <li><a href="admin-view-customers" class="login-button">Admin Dashboard</a></li>
-            <% } else  if (loggedUser.getType() == UserType.CUSTOMER.getValue()) {%>
-                <li><a href="book-a-taxi" class="login-button">Book a Taxi</a></li>
-            <% } %>
-        <% } %>
-    </ul>
-</nav>
+<jsp:include page="pre-login-nav-bar.jsp"/>
 
 <!-- Hero Section -->
 <section class="hero">

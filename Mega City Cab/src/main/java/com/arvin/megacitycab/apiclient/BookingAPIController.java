@@ -8,6 +8,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,18 +31,18 @@ public class BookingAPIController {
     public static Booking createBooking(Booking booking) throws IOException {
         String url = AppConfig.API_URL_BASE + "booking";
 
-        Map<String, Object> requestBody = Map.of(
-                "customer_id", booking.getCustomer_id(),
-                "vehicle_id", booking.getVehicle_id(),
-                "pickup_location", booking.getPickup_location(),
-                "pickup_datetime", booking.getPickup_datetime(),
-                "dropoff_location", booking.getDropoff_location(),
-                "total_distance", booking.getTotal_distance(),
-                "tax", booking.getTax(),
-                "total_price", booking.getTotal_price(),
-                "status", booking.getStatus(),
-                "payment_method", booking.getPayment_method()
-        );
+        Map<String, Object> requestBody = new HashMap<>();
+        requestBody.put("customer_id", booking.getCustomer_id());
+        requestBody.put("vehicle_id", booking.getVehicle_id());
+        requestBody.put("pickup_location", booking.getPickup_location());
+        requestBody.put("pickup_datetime", booking.getPickup_datetime()); // Ensure this is not null
+        requestBody.put("dropoff_location", booking.getDropoff_location());
+        requestBody.put("total_distance", booking.getTotal_distance());
+        requestBody.put("tax", booking.getTax());
+        requestBody.put("discount", booking.getDiscount());
+        requestBody.put("total_price", booking.getTotal_price());
+        requestBody.put("status", booking.getStatus());
+        requestBody.put("payment_method", booking.getPayment_method());
 
         String apiResponse = ApiClient.post(url, requestBody);
         return new Gson().fromJson(apiResponse, Booking.class);
