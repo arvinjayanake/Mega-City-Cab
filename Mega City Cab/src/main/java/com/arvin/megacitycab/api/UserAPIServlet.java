@@ -1,6 +1,7 @@
 package com.arvin.megacitycab.api;
 
 import com.arvin.megacitycab.api.error.ApiError;
+import com.arvin.megacitycab.dao.impl.DaoFactory;
 import com.arvin.megacitycab.dao.UserDao;
 import com.arvin.megacitycab.model.base.User;
 import com.arvin.megacitycab.model.enums.UserType;
@@ -14,7 +15,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 @WebServlet("/api/user")
 public class UserAPIServlet extends HttpServlet {
@@ -23,7 +23,7 @@ public class UserAPIServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        userDao = new UserDao();
+        userDao = DaoFactory.userDao();
     }
 
     @Override
@@ -34,15 +34,15 @@ public class UserAPIServlet extends HttpServlet {
 
         try {
             out = response.getWriter();
-            User getUser = requestToUser(request);
+            String userId = request.getParameter("id");
 
-            if (getUser == null || getUser.getId() == 0) {
+            if (userId == null || userId.isEmpty()) {
                 customResponse(out, 400, "Invalid user data or missing id.");
                 return;
             }
 
-            User user = userDao.getUserById(getUser.getId());
-            if (user != null){
+            User user = userDao.getUserById(Integer.parseInt(userId));
+            if (user != null) {
                 user.setPassword(null);
                 out.print(new Gson().toJson(user));
                 out.flush();
@@ -56,7 +56,7 @@ public class UserAPIServlet extends HttpServlet {
     }
 
     @Override
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response)  {
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = null;
@@ -95,7 +95,7 @@ public class UserAPIServlet extends HttpServlet {
             }
 
             User updateduser = userDao.updateUser(userToUpdate);
-            if (updateduser != null){
+            if (updateduser != null) {
                 out.print(new Gson().toJson(updateduser));
                 out.flush();
             } else {
@@ -156,11 +156,6 @@ public class UserAPIServlet extends HttpServlet {
     private void customResponse(PrintWriter out, int status, String msg) {
         out.print(new Gson().toJson(new ApiError(status, msg)));
         out.flush();
-    }
-
-    private boolean isValidUserType(int type) {
-        return type == UserType.CUSTOMER.getValue() || type == UserType.DRIVER.getValue()
-                || type == UserType.ADMIN.getValue();
     }
 
 }

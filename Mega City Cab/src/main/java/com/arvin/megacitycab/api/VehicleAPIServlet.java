@@ -1,5 +1,7 @@
 package com.arvin.megacitycab.api;
 import com.arvin.megacitycab.api.error.ApiError;
+import com.arvin.megacitycab.dao.BookingDao;
+import com.arvin.megacitycab.dao.impl.DaoFactory;
 import com.arvin.megacitycab.dao.VehicleDao;
 import com.arvin.megacitycab.model.Vehicle;
 import com.google.gson.Gson;
@@ -17,10 +19,12 @@ import java.io.PrintWriter;
 public class VehicleAPIServlet extends HttpServlet {
 
     private VehicleDao vehicleDao;
+    private BookingDao bookingDao;
 
     @Override
     public void init() throws ServletException {
-        vehicleDao = new VehicleDao();
+        vehicleDao = DaoFactory.vehicleDao();
+        bookingDao = DaoFactory.bookingDao();
     }
 
     @Override
@@ -31,14 +35,14 @@ public class VehicleAPIServlet extends HttpServlet {
 
         try {
             out = response.getWriter();
-            Vehicle getVehicle = requestToVehicle(request);
+            String vehicleId = request.getParameter("id");
 
-            if (getVehicle == null || getVehicle.getId() == 0) {
+            if (vehicleId == null || vehicleId.isEmpty()) {
                 customResponse(out, 400, "Invalid vehicle data or missing id.");
                 return;
             }
 
-            Vehicle vehicle = vehicleDao.getVehicleById(getVehicle.getId());
+            Vehicle vehicle = vehicleDao.getVehicleById(Integer.parseInt(vehicleId));
             if (vehicle != null) {
                 out.print(new Gson().toJson(vehicle));
                 out.flush();
@@ -65,6 +69,8 @@ public class VehicleAPIServlet extends HttpServlet {
                 customResponse(out, 400, "Invalid vehicle data or missing id.");
                 return;
             }
+
+
 
             vehicleDao.deleteVehicle(deleteVehicle.getId());
             customResponse(out, 200, "Vehicle deleted.");

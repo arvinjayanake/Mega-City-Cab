@@ -1,0 +1,623 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #f1f1f1;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin-top: 0;
+}
+
+.nav-web ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  align-items: center;
+}
+
+.nav-web ul li a.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-web ul li {
+  float: left;
+}
+
+.nav-web ul li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.nav-web ul li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.nav-web .active {
+  background-color: #1a16e6;
+}
+
+
+.hero1-image {
+  background-image: linear-gradient(rgba(31, 31, 126, 0.35), rgba(31, 31, 126, 0.35)), url("../img/sport-bodybuilding-lifestyle-technology-people-concept-happy-young-man-with-smartphone-showing-thumbs-up-gym.jpg");
+  height: 85vh; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  justify-content: flex-start; 
+  align-items: center;
+}
+
+
+.hero2-image {
+  background-image: linear-gradient(rgba(31, 31, 126, 0.35), rgba(31, 31, 126, 0.35)), url("../img/hero-img.jpg");
+  height: 85vh; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  justify-content: flex-start; 
+  align-items: center;
+}
+
+
+.hero2-image3 {
+  background-image: linear-gradient(rgba(31, 31, 126, 0.35), rgba(31, 31, 126, 0.35)), url("../img/muscular-man-doing-push-ups-one-hand.jpg");
+  height: 85vh; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  justify-content: flex-start; 
+  align-items: center;
+}
+
+
+.hero2-image4 {
+  background-image: linear-gradient(rgba(31, 31, 126, 0.35), rgba(31, 31, 126, 0.35)), url("../img/athletic-man-doing-bent-row-muscles.jpg");
+  background-position:bottom;
+  height: 85vh; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  justify-content: flex-start; 
+  align-items: center;
+}
+
+
+.hero-text {
+  text-align: left; 
+  color: white;
+  margin-left: 50px; 
+}
+
+.hero-text h1 {
+  font-size: 2em; 
+  margin-bottom: 10px;
+}
+
+.hero-text p {
+  font-size: 1.2em; 
+  margin-bottom: 20px;
+}
+
+.hero-text button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 15px 30px; 
+  font-size: 1.2em; 
+  color: #fff;
+  background-color: #1a16e6;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.hero-text button:hover {
+  background-color: #555;
+  color: white;
+}
+
+
+
+
+.about-img-container {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  margin-top: 20px; 
+}
+
+.about-img {
+  width: 80vw;
+  max-width: 100%; 
+}
+
+.about-para-container {
+  max-width: 80vw; 
+  margin: 0 auto; 
+  padding: 20px;
+}
+
+.about-para-heading {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px; 
+  color: #181818;
+  margin-bottom: 15px;
+}
+
+.about-para-content {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px; 
+  color: #181818; 
+  line-height: 1.5; 
+}
+
+.team-container {
+  display: flex;
+  background-color: #cecece;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0;
+  width: 100%;
+  margin-top: 50px;
+  gap: 25px
+}
+
+
+.team-member {
+  text-align: center;
+  margin: 20px;
+}
+
+.team-member-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%; 
+  object-fit: cover;
+  
+}
+
+.team-member-name {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.team-member-position {
+  font-size: 14px;
+  color: #777;
+  margin-top: 5px;
+}
+
+.about-quote-container {
+  text-align: center;
+  margin-top: 50px; 
+}
+
+.about-quote {
+  font-family: Arial, sans-serif; 
+  font-size: 28px; 
+  color: #333; 
+  font-style: italic; 
+  padding: 20px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+}
+
+
+.site-footer {
+  background-color: #333;
+  color: #fff;
+  padding: 40px 20px;
+}
+
+.footer-bottom {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.footer-bottom p {
+  font-size: 14px;
+  margin: 0;
+}
+
+.footer-bottom ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-bottom ul li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.footer-bottom ul li a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-bottom ul li a:hover {
+  color: #ffd700;
+}
+
+
+/*.......................Hompage About............................*/
+
+.about-fcms {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9f9f9;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.container {
+  padding-left: 100px;
+  padding-right: 100px;
+  max-width: 1500px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.text-content {
+  flex: 1;
+
+}
+
+.text-content h2 {
+  font-size: 30px;
+  color: #333;
+}
+
+.text-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #666;
+}
+
+.image-content {
+  flex: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 15px;
+}
+
+.image-content img {
+  width: auto; 
+  max-width: 100%; 
+  height: auto; 
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .image-content {
+      flex: none; 
+      width: 80%; 
+      margin: 0 auto; 
+      padding: 20px 0; 
+  }
+
+  .image-content img {
+      max-width: 100%;
+      height: auto; 
+  }
+}
+
+
+/*.......................Hompage Services............................*/
+
+.services-offered-section {
+  background-color: #fff;
+  text-align: center;
+  height: auto;
+  padding-top: 20px;
+  padding-bottom: 50px;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.services-offered-section h2 {
+  color: #333;
+  font-size: 30px;
+  padding-top: 50px;
+}
+
+.services-offered-section h2 {
+  color: #333;
+}
+
+.service-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.service-card {
+  flex-basis: calc(30% - 20px); 
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  overflow: hidden; 
+}
+
+.service-card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover; 
+}
+
+.service-card h3 {
+  color: #272727;
+
+}
+
+.service-card p {
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 0 15px 15px;
+}
+
+@media (max-width: 768px) {
+  .service-card {
+      flex-basis: calc(50% - 20px); 
+  }
+}
+
+@media (max-width: 480px) {
+  .service-card {
+      flex-basis: 100%; 
+  }
+}
+
+
+/*...................Home Features..........................*/
+
+.features-section {
+  background-color: #262626; 
+  padding: 40px 0; 
+  height: auto;
+  color: #ffffff;
+  margin-top: 50px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around; 
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto; 
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  flex-basis: 20%; 
+  min-width: 180px; 
+  padding: 20px; 
+  
+}
+
+.feature img {
+  width: 80px; 
+  height: auto; 
+  margin-bottom: 20px; 
+}
+
+.feature p {
+  text-align: center;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+      justify-content: center; 
+  }
+  .feature {
+      flex-basis: 45%; 
+      margin-bottom: 20px; 
+  }
+}
+
+/*...................Home Testimonials...............................*/
+
+
+.fcms-testimonials-section {
+  background-color: #fff;
+  padding: 60px 10%;
+  text-align: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.fcms-testimonials-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.fcms-testimonials-section h2 {
+  color: #333;
+  margin-bottom: 40px;
+  font-size: 30px;
+  padding-bottom: 20px;
+}
+
+.fcms-testimonial-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.fcms-testimonial {
+  flex-basis: 45%; 
+  margin-bottom: 30px;
+}
+
+blockquote {
+  font-style: italic;
+  color: #666;
+  padding: 20px;
+  border-left: 4px solid #007bff;
+  margin: 20px 0;
+  position: relative;
+  background-color: #f9f9f9; 
+}
+
+.fcms-author {
+  color: #333;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .fcms-testimonial-wrapper {
+      flex-direction: column;
+  }
+
+  .fcms-testimonial {
+      flex-basis: 100%; 
+  }
+}
+
+/*...................Home Partners...............................*/
+
+.our-partners-section {
+  background-color: #f7f7f7; /* Light grey background for the section */
+  padding: 60px 10%;
+  text-align: center; /* Center-align the section title */
+  height: auto;
+}
+
+.our-partners-section h2 {
+  font-size: 30px;
+  color: #333;
+  padding-top: 40px;
+}
+
+.our-partners-section h2 {
+  color: #333;
+  margin-bottom: 40px; /* Space between the section title and logos */
+}
+
+.partners-logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center logos within the container */
+  gap: 20px; /* Space between logos */
+}
+
+.partners-logos img {
+  max-width: 100%;
+  height: auto; 
+  width: calc(15% - 20px); 
+  opacity: 0.8; 
+  transition: opacity 0.3s ease; 
+  padding: 40px;
+}
+
+
+
+@media (max-width: 768px) {
+  .partners-logos img {
+      width: calc(50% - 20px); /* Increase logo size on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .partners-logos img {
+      width: calc(100% - 20px); /* Full width logos on very small screens */
+  }
+}
+
+
+/*...................Contact Form...............................*/
+.formd{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 70px;
+  padding-bottom: 70px;
+
+
+}
+
+form {
+  width: 900px;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #1a16e6;
+  color: white;
+  padding: 15px 40px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+
+
+/*...................Contact Map...............................*/
+
+.gomp{
+  display: flex;
+  flex-direction: row;
+  width: 100%
+}
