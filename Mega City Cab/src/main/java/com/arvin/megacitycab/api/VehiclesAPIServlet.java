@@ -1,11 +1,9 @@
 package com.arvin.megacitycab.api;
 
 import com.arvin.megacitycab.api.error.ApiError;
-import com.arvin.megacitycab.dao.UserDao;
+import com.arvin.megacitycab.dao.impl.DaoFactory;
 import com.arvin.megacitycab.dao.VehicleDao;
 import com.arvin.megacitycab.model.Vehicle;
-import com.arvin.megacitycab.model.base.User;
-import com.arvin.megacitycab.model.enums.UserType;
 import com.google.gson.Gson;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -23,9 +21,8 @@ public class VehiclesAPIServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        vehicleDao = new VehicleDao();
+        vehicleDao = DaoFactory.vehicleDao();
     }
-
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
