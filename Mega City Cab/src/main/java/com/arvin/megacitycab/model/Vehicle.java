@@ -112,4 +112,26 @@ public class Vehicle {
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
     }
+
+    public String fullNameWithYear(){
+        return  (getMake() != null ? getMake() : "-") + " " + (getModel() != null ? getModel() : "-") + " " + getYear();
+    }
+
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "id=" + id +
+                ", make='" + make + '\'' +
+                ", model='" + model + '\'' +
+                ", category=" + category +
+                ", year=" + year +
+                ", registration_number='" + registration_number + '\'' +
+                ", passenger_capacity=" + passenger_capacity +
+                ", luggage_capacity='" + luggage_capacity + '\'' +
+                ", price_per_km=" + price_per_km +
+                ", status=" + status +
+                ", created_at='" + created_at + '\'' +
+                ", updated_at='" + updated_at + '\'' +
+                '}';
+    }
 }

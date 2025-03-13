@@ -1,114 +1,164 @@
 package com.arvin.megacitycab.model;
 
 import com.arvin.megacitycab.model.enums.BookingStatus;
+import com.arvin.megacitycab.model.enums.PaymentMethod;
 
 public class Booking {
-    private String bookingId;
-    private Customer customer;
-    private Driver driver;
-    private Vehicle vehicle;
-    private long pickupLatitude;
-    private long pickupLongitude;
-    private String pickupAddress;
-    private long dropOffLatitude;
-    private long dropOffLongitude;
-    private String dropOffAddress;
-    private BookingStatus bookingStatus;
-    private double amount;
 
-    public String getBookingId() {
-        return bookingId;
+    private int id;
+    private int customer_id;
+    private int vehicle_id;
+    private int driver_id = -1;
+    private String pickup_location;
+    private String pickup_datetime;
+    private String dropoff_location;
+    private Double total_distance;
+    private Double tax;
+    private Double discount;
+    private Double total_price;
+    private int status;
+    private String created_at;
+    private String updated_at;
+    private int payment_method = PaymentMethod.CASH.getValue();
+
+    public int getId() {
+        return id;
     }
 
-    public void setBookingId(String bookingId) {
-        this.bookingId = bookingId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public int getCustomer_id() {
+        return customer_id;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomer_id(int customer_id) {
+        this.customer_id = customer_id;
     }
 
-    public Driver getDriver() {
-        return driver;
+    public int getVehicle_id() {
+        return vehicle_id;
     }
 
-    public void setDriver(Driver driver) {
-        this.driver = driver;
+    public void setVehicle_id(int vehicle_id) {
+        this.vehicle_id = vehicle_id;
     }
 
-    public Vehicle getVehicle() {
-        return vehicle;
+    public int getDriver_id() {
+        return driver_id;
     }
 
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
+    public void setDriver_id(int driver_id) {
+        this.driver_id = driver_id;
     }
 
-    public long getPickupLatitude() {
-        return pickupLatitude;
+    public String getPickup_location() {
+        return pickup_location;
     }
 
-    public void setPickupLatitude(long pickupLatitude) {
-        this.pickupLatitude = pickupLatitude;
+    public void setPickup_location(String pickup_location) {
+        this.pickup_location = pickup_location;
     }
 
-    public long getPickupLongitude() {
-        return pickupLongitude;
+    public String getPickup_datetime() {
+        return pickup_datetime;
     }
 
-    public void setPickupLongitude(long pickupLongitude) {
-        this.pickupLongitude = pickupLongitude;
+    public void setPickup_datetime(String pickup_datetime) {
+        this.pickup_datetime = pickup_datetime;
     }
 
-    public String getPickupAddress() {
-        return pickupAddress;
+    public String getDropoff_location() {
+        return dropoff_location;
     }
 
-    public void setPickupAddress(String pickupAddress) {
-        this.pickupAddress = pickupAddress;
+    public void setDropoff_location(String dropoff_location) {
+        this.dropoff_location = dropoff_location;
     }
 
-    public long getDropOffLatitude() {
-        return dropOffLatitude;
+    public Double getTotal_distance() {
+        return total_distance;
     }
 
-    public void setDropOffLatitude(long dropOffLatitude) {
-        this.dropOffLatitude = dropOffLatitude;
+    public void setTotal_distance(Double total_distance) {
+        this.total_distance = total_distance;
     }
 
-    public long getDropOffLongitude() {
-        return dropOffLongitude;
+    public Double getTax() {
+        return tax;
     }
 
-    public void setDropOffLongitude(long dropOffLongitude) {
-        this.dropOffLongitude = dropOffLongitude;
+    public void setTax(Double tax) {
+        this.tax = tax;
     }
 
-    public String getDropOffAddress() {
-        return dropOffAddress;
+    public Double getDiscount() {
+        return discount;
     }
 
-    public void setDropOffAddress(String dropOffAddress) {
-        this.dropOffAddress = dropOffAddress;
+    public void setDiscount(Double discount) {
+        this.discount = discount;
     }
 
-    public BookingStatus getBookingStatus() {
-        return bookingStatus;
+    public Double getTotal_price() {
+        return total_price;
     }
 
-    public void setBookingStatus(BookingStatus bookingStatus) {
-        this.bookingStatus = bookingStatus;
+    public void setTotal_price(Double total_price) {
+        this.total_price = total_price;
     }
 
-    public double getAmount() {
-        return amount;
+    public int getStatus() {
+        return status;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
+    }
+
+    public String getUpdated_at() {
+        return updated_at;
+    }
+
+    public void setUpdated_at(String updated_at) {
+        this.updated_at = updated_at;
+    }
+
+    public int getPayment_method() {
+        return payment_method;
+    }
+
+    public void setPayment_method(int payment_method) {
+        this.payment_method = payment_method;
+    }
+
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "id=" + id +
+                ", customer_id=" + customer_id +
+                ", vehicle_id=" + vehicle_id +
+                ", driver_id=" + driver_id +
+                ", pickup_location='" + pickup_location + '\'' +
+                ", pickup_datetime='" + pickup_datetime + '\'' +
+                ", dropoff_location='" + dropoff_location + '\'' +
+                ", total_distance=" + total_distance +
+                ", tax=" + tax +
+                ", discount=" + discount +
+                ", total_price=" + total_price +
+                ", status=" + status +
+                ", created_at='" + created_at + '\'' +
+                ", updated_at='" + updated_at + '\'' +
+                ", payment_method=" + payment_method +
+                '}';
     }
 }

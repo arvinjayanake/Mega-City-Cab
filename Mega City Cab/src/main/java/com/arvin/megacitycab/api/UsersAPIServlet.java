@@ -1,6 +1,7 @@
 package com.arvin.megacitycab.api;
 
 import com.arvin.megacitycab.api.error.ApiError;
+import com.arvin.megacitycab.dao.impl.DaoFactory;
 import com.arvin.megacitycab.dao.UserDao;
 import com.arvin.megacitycab.model.base.User;
 import com.arvin.megacitycab.model.enums.UserType;
@@ -11,7 +12,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class UsersAPIServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        userDao = new UserDao();
+        userDao = DaoFactory.userDao();
     }
 
 

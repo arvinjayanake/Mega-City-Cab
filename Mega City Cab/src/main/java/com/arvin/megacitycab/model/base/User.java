@@ -7,11 +7,11 @@ public class User {
     protected String address;
     protected String email;
     protected String mobile;
-
     protected int type;
     protected String password;
     protected String verification_code;
-    protected Boolean isVerified = false;
+    protected int is_verified = 0;
+    protected String access_token;
     protected String created_at;
     protected String updated_at;
 
@@ -71,12 +71,12 @@ public class User {
         this.password = password;
     }
 
-    public Boolean isVerified() {
-        return isVerified;
+    public int getIs_verified() {
+        return is_verified;
     }
 
-    public void setVerified(Boolean verified) {
-        isVerified = verified;
+    public void setIs_verified(int is_verified) {
+        this.is_verified = is_verified;
     }
 
     public String getVerification_code() {
@@ -87,16 +87,20 @@ public class User {
         this.verification_code = verification_code;
     }
 
-    public Boolean getVerified() {
-        return isVerified;
-    }
-
     public int getType() {
         return type;
     }
 
     public void setType(int type) {
         this.type = type;
+    }
+
+    public String getAccess_token() {
+        return access_token;
+    }
+
+    public void setAccess_token(String access_token) {
+        this.access_token = access_token;
     }
 
     public String getCreated_at() {
@@ -113,5 +117,16 @@ public class User {
 
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", nic='" + nic + '\'' +
+                ", address='" + address + '\'' +
+                ", email='" + email + '\'' +
+                ", mobile='" + mobile + '\'' +
+                '}';
     }
 }
