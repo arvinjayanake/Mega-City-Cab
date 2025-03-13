@@ -1,0 +1,107 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #1A2A3A;
+}
+
+/* Edit Booking Container */
+.edit-booking-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.edit-booking-container h1 {
+    color: #1A2A3A;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Booking Information */
+.booking-info {
+    margin-bottom: 2rem;
+}
+
+.booking-info h2 {
+    color: #1A2A3A;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #FFD700;
+    padding-bottom: 0.5rem;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    color: #1A2A3A;
+    font-weight: 500;
+}
+
+.info-value {
+    color: #666;
+}
+
+/* Edit Booking Form */
+.edit-booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    color: #1A2A3A;
+    font-weight: 500;
+}
+
+.form-group select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.form-group select:focus {
+    border-color: #FFD700;
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+/* Submit Button */
+button {
+    padding: 12px 24px;
+    background-color: #FFD700;
+    border: none;
+    border-radius: 5px;
+    color: #1A2A3A;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #e6b800;
+}

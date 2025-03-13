@@ -1,0 +1,129 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #1A2A3A;
+}
+
+/* Navigation Bar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1A2A3A;
+    padding: 1rem 2rem;
+}
+
+nav .logo {
+    color: #FFD700;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+nav .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+nav .nav-links a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+nav .nav-links a:hover {
+    color: #FFD700;
+}
+
+nav .nav-links a.active {
+    color: #FFD700;
+    font-weight: 600;
+}
+
+/* Contact Container */
+.contact-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+.contact-container h1 {
+    text-align: center;
+    color: #1A2A3A;
+    margin-bottom: 2rem;
+}
+
+/* Contact Card */
+.contact-card {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    font-weight: 500;
+    color: #1A2A3A;
+}
+
+.info-value {
+    color: #666;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #1A2A3A;
+    color: #FFFFFF;
+    margin-top: 2rem;
+}
+
+footer .footer-links {
+    margin-bottom: 0.5rem;
+}
+
+footer .footer-links a {
+    color: #FFD700;
+    text-decoration: none;
+    margin: 0 0.5rem;
+}
+
+footer .footer-links a:hover {
+    text-decoration: underline;
+}
+
+footer .social-media {
+    margin-bottom: 0.5rem;
+}
+
+footer .social-media a {
+    color: #FFFFFF;
+    text-decoration: none;
+    margin: 0 0.5rem;
+}
+
+footer .social-media a:hover {
+    color: #FFD700;
+}
