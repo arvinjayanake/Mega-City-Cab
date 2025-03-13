@@ -12,7 +12,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import java.awt.print.Book;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/api/bookings")
@@ -31,10 +33,19 @@ public class BookingsAPIServlet extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
+        String vehicleId = request.getParameter("vehicle_id");
+
         PrintWriter out = null;
         try {
             out = response.getWriter();
-            List<Booking> bookings = bookingDao.getAllBookings();
+            List<Booking> bookings;
+
+            if (vehicleId != null && !vehicleId.isEmpty()){
+                bookings = bookingDao.getBookingsByVehicleId(Integer.parseInt(vehicleId));
+            } else {
+                bookings = bookingDao.getAllBookings();
+            }
+
             out.print(new Gson().toJson(bookings));
             out.flush();
         } catch (Exception ex) {

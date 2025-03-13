@@ -20,12 +20,14 @@ public class AdminDeleteVehiclePageServlet extends BasePageServlet {
             if (isAdmin(request, response)){
                 //get data
                 int vehicleId = Integer.parseInt(request.getParameter("id"));
+                String error = request.getParameter("error");
 
                 //api call
                 Vehicle vehicle = VehicleAPIController.getVehicleById(vehicleId);
 
                 //set data to jsp
                 request.setAttribute("vehicle", vehicle);
+                request.setAttribute("error", error);
                 request.getRequestDispatcher("admin-delete-vehicle.jsp").forward(request, response);
             }
         } catch (Exception e1) {

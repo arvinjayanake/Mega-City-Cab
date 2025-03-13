@@ -47,11 +47,22 @@
                     <li><strong>Updated At:</strong> <%= vehicle.getUpdated_at()  %></li>
                 </ul>
 
+                <%
+                    String error = (String) request.getAttribute("error");
+                    if (error != null) {
+                %>
+                <div class="error-message">
+                    <%= error %>
+                </div>
+                <% } %>
+
                 <form action="form-delete-vehicle" method="post">
                     <input type="hidden" name="id" value="<%= vehicle.getId() %>">
                     <button class="action-button" type="submit">Delete Vehicle</button>
                 </form>
             </div>
+
+
         </div>
     </div>
 </div>

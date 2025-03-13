@@ -1,5 +1,6 @@
 package com.arvin.megacitycab.api;
 import com.arvin.megacitycab.api.error.ApiError;
+import com.arvin.megacitycab.dao.BookingDao;
 import com.arvin.megacitycab.dao.impl.DaoFactory;
 import com.arvin.megacitycab.dao.VehicleDao;
 import com.arvin.megacitycab.model.Vehicle;
@@ -18,10 +19,12 @@ import java.io.PrintWriter;
 public class VehicleAPIServlet extends HttpServlet {
 
     private VehicleDao vehicleDao;
+    private BookingDao bookingDao;
 
     @Override
     public void init() throws ServletException {
         vehicleDao = DaoFactory.vehicleDao();
+        bookingDao = DaoFactory.bookingDao();
     }
 
     @Override
@@ -66,6 +69,8 @@ public class VehicleAPIServlet extends HttpServlet {
                 customResponse(out, 400, "Invalid vehicle data or missing id.");
                 return;
             }
+
+
 
             vehicleDao.deleteVehicle(deleteVehicle.getId());
             customResponse(out, 200, "Vehicle deleted.");

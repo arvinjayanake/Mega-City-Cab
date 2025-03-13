@@ -10,6 +10,8 @@ public interface BookingDao {
 
     Booking getBookingById(int id) throws SQLException;
 
+    List<Booking> getBookingsByVehicleId(int vehicleId) throws SQLException;
+
     List<Booking> getAllBookings() throws SQLException;
 
     Booking updateBooking(Booking booking) throws SQLException;

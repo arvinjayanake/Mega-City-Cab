@@ -277,6 +277,16 @@ body {
     box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
 }
 
+.error-message {
+    color: #E74C3C;
+    background-color: #ffe6e6;
+    padding: 10px;
+    border: 1px solid #E74C3C;
+    border-radius: 5px;
+    margin-bottom: 1.5rem;
+    font-size: 14px;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .sidebar {

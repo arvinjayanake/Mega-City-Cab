@@ -78,6 +78,13 @@ public class BookingAPIController {
         return bookings;
     }
 
+    public static List<Booking> getBookingsByVehicleId(int vehicleId) throws IOException {
+        String url = AppConfig.API_URL_BASE + "bookings?vehicle_id=" + vehicleId;
+        String apiResponse = ApiClient.get(url);
+        Type bookingListType = new TypeToken<List<Booking>>() {}.getType();
+        return new Gson().fromJson(apiResponse, bookingListType);
+    }
+
     public static List<Booking> getAllBookings() throws IOException {
         String url = AppConfig.API_URL_BASE + "bookings";
         String apiResponse = ApiClient.get(url);

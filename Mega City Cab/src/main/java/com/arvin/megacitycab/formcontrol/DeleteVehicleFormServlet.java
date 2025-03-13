@@ -1,11 +1,15 @@
 package com.arvin.megacitycab.formcontrol;
 
+import com.arvin.megacitycab.apiclient.BookingAPIController;
 import com.arvin.megacitycab.apiclient.VehicleAPIController;
+import com.arvin.megacitycab.model.Booking;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import java.util.List;
 
 
 @WebServlet("/form-delete-vehicle")
@@ -13,21 +17,23 @@ public class DeleteVehicleFormServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+        int id = 0;
         try {
             //Data
-            int id = Integer.parseInt(request.getParameter("id"));
+            id = Integer.parseInt(request.getParameter("id"));
 
-            //API call
-            VehicleAPIController.deleteVehicleById(id);
+            List<Booking> bookings = BookingAPIController.getBookingsByVehicleId(id);
 
-            //redirect
-            response.sendRedirect("admin-view-vehicles");
+            if (bookings == null || bookings.size() == 0){
+                VehicleAPIController.deleteVehicleById(id);
+                response.sendRedirect("admin-delete-vehicle?id=" + id);
+            } else {
+                response.sendRedirect("admin-delete-vehicle?id=" + id + "&error=" + "Unable to delete. This vehicle has bookings.");
+            }
         } catch (Exception e1) {
             e1.printStackTrace();
             try {
-                request.setAttribute("error", "Unable to delete vehicle at the moment.");
-                RequestDispatcher dispatcher = request.getRequestDispatcher("admin-delete-vehicle.jsp");
-                dispatcher.forward(request, response);
+                response.sendRedirect("admin-delete-vehicle?id=" + id + "&error=" + "Error while deleting the vehicle. Try again.");
             } catch (Exception e2) {
                 e2.printStackTrace();
             }

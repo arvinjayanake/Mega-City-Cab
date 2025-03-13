@@ -78,6 +78,30 @@ class BookingDaoImpl extends BaseDao implements BookingDao {
     }
 
     @Override
+    public List<Booking> getBookingsByVehicleId(int vehicleId) throws SQLException {
+        List<Booking> bookings = new ArrayList<>();
+        String sql = "SELECT * FROM booking WHERE vehicle_id = ?";
+        Connection conn = null;
+        try {
+            conn = DatabaseConnectionPool.getInstance().getConnection();
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setInt(1, vehicleId);
+                try (ResultSet rs = stmt.executeQuery()) {
+                    while (rs.next()) {
+                        Booking booking = resultSetToBooking(rs);
+                        bookings.add(booking);
+                    }
+                }
+            }
+        } finally {
+            if (conn != null) {
+                DatabaseConnectionPool.getInstance().releaseConnection(conn);
+            }
+        }
+        return bookings;
+    }
+
+    @Override
     public List<Booking> getAllBookings() throws SQLException {
         List<Booking> bookings = new ArrayList<>();
         String sql = "SELECT * FROM booking ORDER BY id DESC";
